@@ -46,11 +46,6 @@ class Menu{
     private Map myMap;
 
     /**
-     * @brief Disabled Menu default constructor
-     */
-    private Menu(){}
-
-    /**
      * @brief Menu constructor that requires a starting map
      * @param myMap Starting map
      */
@@ -180,11 +175,6 @@ class Map{
     // @TODO: Add more environment descriptions text
     // private bool nextToWall;
     // private bool inCorner;
-
-    /**
-     * @brief Disabled Map default constructor
-     */
-    private Map(){}
 
     /**
      * @brief Map constructor that requires the maps dimensions
