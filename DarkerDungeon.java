@@ -166,12 +166,14 @@ class Menu{
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
-    private enum PlayerMovements {FORWARD, LEFT, RIGHT, BACKWARD}
+    private enum PlayerMovements {FORWARD, LEFT, BACKWARD, RIGHT}
     private int width;
     private int height;
     private Directions playerFront;
-    private SimpleEntry<Integer, Integer> currentLocation;
-    private SimpleEntry<Integer, Integer> exitLocation;
+    private int currentLocationX;
+    private int currentLocationY;
+    private int exitLocationX;
+    private int exitLocationY;
     // @TODO: Add more environment descriptions text
     // private bool nextToWall;
     // private bool inCorner;
@@ -185,17 +187,83 @@ class Map{
         this.width = width;
         this.height = height;
         this.playerFront = Directions.SOUTH;
-        this.currentLocation = new SimpleEntry<>(0, 0);
-        this.exitLocation = new SimpleEntry<>(width - 1, height - 1);
+        this.currentLocationX = 0;
+        this.currentLocationY = 0;
+        this.exitLocationX = width - 1;
+        this.exitLocationY = height - 1;
     }
 
     /**
-     * @TODO
      * @brief Function to update player information based on a requested move action
      * @apiNote Warning this function does not do bounds checking for you
      */
     public void move(PlayerMovements myMove){
-
+        switch(playerFront){
+            case Directions.NORTH:
+                switch(myMove){
+                    case PlayerMovements.FORWARD:
+                        currentLocationY--;
+                        break;
+                    case PlayerMovements.LEFT:
+                        currentLocationX--;
+                        break;
+                    case PlayerMovements.BACKWARD:
+                        currentLocationY++;
+                        break;
+                    case PlayerMovements.RIGHT:
+                        currentLocationX++;
+                        break;
+                }
+                break;
+            case Directions.EAST:
+                switch(myMove){
+                    case PlayerMovements.FORWARD:
+                        currentLocationX++;
+                        break;
+                    case PlayerMovements.LEFT:
+                        currentLocationY--;
+                        break;
+                    case PlayerMovements.BACKWARD:
+                        currentLocationX--;
+                        break;
+                    case PlayerMovements.RIGHT:
+                        currentLocationY++;
+                        break;
+                }
+                break;
+            case Directions.SOUTH:
+                switch(myMove){
+                    case PlayerMovements.FORWARD:
+                        currentLocationY++;
+                        break;
+                    case PlayerMovements.LEFT:
+                        currentLocationX++;
+                        break;
+                    case PlayerMovements.BACKWARD:
+                        currentLocationY--;
+                        break;
+                    case PlayerMovements.RIGHT:
+                        currentLocationX--;
+                        break;
+                }
+                break;
+            case Directions.WEST:
+                switch(myMove){
+                    case PlayerMovements.FORWARD:
+                        currentLocationX--;
+                        break;
+                    case PlayerMovements.LEFT:
+                        currentLocationY++;
+                        break;
+                    case PlayerMovements.BACKWARD:
+                        currentLocationX++;
+                        break;
+                    case PlayerMovements.RIGHT:
+                        currentLocationY--;
+                        break;
+                }
+                break;
+        }
     }
 
     /**
@@ -203,7 +271,8 @@ class Map{
      * @return boolean based on if the player is or is not at the exit door
      */
     public Boolean checkExit(){
-        if(this.currentLocation == this.exitLocation){
+        if(this.currentLocationX == this.exitLocationX &&
+           this.currentLocationY == this.exitLocationY){
             return true;
         }
         return false;
