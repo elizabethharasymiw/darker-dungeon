@@ -206,12 +206,15 @@ class Map{
                         break;
                     case PlayerMovements.LEFT:
                         currentLocationX--;
+                        playerFront = Directions.WEST;
                         break;
                     case PlayerMovements.BACKWARD:
                         currentLocationY++;
+                        playerFront = Directions.SOUTH;
                         break;
                     case PlayerMovements.RIGHT:
                         currentLocationX++;
+                        playerFront = Directions.EAST;
                         break;
                 }
                 break;
@@ -222,12 +225,15 @@ class Map{
                         break;
                     case PlayerMovements.LEFT:
                         currentLocationY--;
+                        playerFront = Directions.NORTH;
                         break;
                     case PlayerMovements.BACKWARD:
                         currentLocationX--;
+                        playerFront = Directions.WEST;
                         break;
                     case PlayerMovements.RIGHT:
                         currentLocationY++;
+                        playerFront = Directions.SOUTH;
                         break;
                 }
                 break;
@@ -238,12 +244,15 @@ class Map{
                         break;
                     case PlayerMovements.LEFT:
                         currentLocationX++;
+                        playerFront = Directions.EAST;
                         break;
                     case PlayerMovements.BACKWARD:
                         currentLocationY--;
+                        playerFront = Directions.NORTH;
                         break;
                     case PlayerMovements.RIGHT:
                         currentLocationX--;
+                        playerFront = Directions.WEST;
                         break;
                 }
                 break;
@@ -254,12 +263,15 @@ class Map{
                         break;
                     case PlayerMovements.LEFT:
                         currentLocationY++;
+                        playerFront = Directions.SOUTH;
                         break;
                     case PlayerMovements.BACKWARD:
                         currentLocationX++;
+                        playerFront = Directions.EAST;
                         break;
                     case PlayerMovements.RIGHT:
                         currentLocationY--;
+                        playerFront = Directions.NORTH;
                         break;
                 }
                 break;
