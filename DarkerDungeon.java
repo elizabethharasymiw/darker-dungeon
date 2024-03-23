@@ -200,7 +200,7 @@ class Map{
      * @brief Function to update player information based on a requested move action
      * @apiNote Warning this function does not do bounds checking for you
      */
-    public void move(PlayerMovements myMove){
+    public void movePlayer(PlayerMovements myMove){
         switch(playerFront){
             case Directions.NORTH:
                 switch(myMove){
