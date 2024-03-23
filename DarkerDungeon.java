@@ -377,9 +377,8 @@ class Map{
     }
 
     /**
-     * @TODO
-     * @brief Function to check if the player can move backward
-     * @return boolean based on if the player can move backward or not
+     * @brief Function to check if the player can move right
+     * @return boolean based on if the player can move tight or not
      */
     public Boolean checkPlayerRIGHT(){
         switch (playerFront){
