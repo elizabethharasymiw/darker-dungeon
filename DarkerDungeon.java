@@ -166,6 +166,9 @@ class Menu{
 
 /**
  * @brief Map Class that holds state information about player and environment
+ * @apiNote The map is draw from the upper left to lower right, so upper left
+ *          is coordinates (0, 0), and lower right is coordinates
+ *          (width - 1, height -1).
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
