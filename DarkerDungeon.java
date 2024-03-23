@@ -348,11 +348,29 @@ class Map{
     }
 
     /**
-     * @TODO
      * @brief Function to check if the player can move backward
      * @return boolean based on if the player can move backward or not
      */
     public Boolean checkPlayerBACKWARD(){
+        switch (playerFront){
+            case Directions.NORTH:
+                if(currentLocationY < height)
+                    return true;
+                break;
+            case Directions.WEST:
+                if(currentLocationX < width)
+                    return true;
+                break;
+            case Directions.SOUTH:
+                if(currentLocationY > 0)
+                    return true;
+                break;
+            case Directions.EAST:
+                if(currentLocationX > 0)
+                    return true;
+                break;
+        }
+
         return false;
     }
 
