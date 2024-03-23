@@ -153,11 +153,14 @@ class Menu{
     }
 
     /**
-     * @TODO
      * @brief Function to update what options the user has avaiable to them
      */
     public void updateMenu(){
-
+        unlockedOptions.set(MenuOptions.OPENDOOR.ordinal(), myMap.checkExit());
+        unlockedOptions.set(MenuOptions.FORWARD.ordinal(), myMap.checkPlayerFORWARD());
+        unlockedOptions.set(MenuOptions.LEFT.ordinal(), myMap.checkPlayerLEFT());
+        unlockedOptions.set(MenuOptions.BACKWARD.ordinal(), myMap.checkPlayerBACKWARD());
+        unlockedOptions.set(MenuOptions.RIGHT.ordinal(), myMap.checkPlayerRIGHT());
     }
 }
 
@@ -287,6 +290,60 @@ class Map{
            this.currentLocationY == this.exitLocationY){
             return true;
         }
+        return false;
+    }
+
+    /**
+     * @brief Function to check if the player can move forward
+     * @return boolean based on if the player can move forward or not
+     */
+    public Boolean checkPlayerFORWARD(){
+        switch (playerFront){
+            case Directions.NORTH:
+                if(currentLocationY > 0)
+                    return true;
+                break;
+            case Directions.WEST:
+                if(currentLocationX > 0)
+                    return true;
+                break;
+            case Directions.SOUTH:
+                if(currentLocationY < height)
+                    return true;
+                break;
+            case Directions.EAST:
+                if(currentLocationX < width)
+                    return true;
+                break;
+        }
+
+        return  false;
+    }
+
+    /**
+     * @TODO
+     * @brief Function to check if the player can move left
+     * @return boolean based on if the player can move left or not
+     */
+    public Boolean checkPlayerLEFT(){
+        return false;
+    }
+
+    /**
+     * @TODO
+     * @brief Function to check if the player can move backward
+     * @return boolean based on if the player can move backward or not
+     */
+    public Boolean checkPlayerBACKWARD(){
+        return false;
+    }
+
+    /**
+     * @TODO
+     * @brief Function to check if the player can move backward
+     * @return boolean based on if the player can move backward or not
+     */
+    public Boolean checkPlayerRIGHT(){
         return false;
     }
 }
