@@ -321,11 +321,29 @@ class Map{
     }
 
     /**
-     * @TODO
      * @brief Function to check if the player can move left
      * @return boolean based on if the player can move left or not
      */
     public Boolean checkPlayerLEFT(){
+        switch (playerFront){
+            case Directions.NORTH:
+                if(currentLocationX > 0)
+                    return true;
+                break;
+            case Directions.WEST:
+                if(currentLocationY < height)
+                    return true;
+                break;
+            case Directions.SOUTH:
+                if(currentLocationX < width)
+                    return true;
+                break;
+            case Directions.EAST:
+                if(currentLocationY > 0)
+                    return true;
+                break;
+        }
+
         return false;
     }
 
