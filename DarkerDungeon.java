@@ -120,7 +120,6 @@ class Menu{
     }
 
     /**
-     * @TODO
      * @brief Function to process and report back what happened to a player action
      * @param userOption The action the player is trying to do
      * @return Boolean state of whether or not the player is still trapped
@@ -129,15 +128,19 @@ class Menu{
         switch(userOption){
             case MenuOptions.FORWARD:
                 System.out.println("\nYou decide to walk for a bit\n");
+                myMap.movePlayer(Map.PlayerMovements.FORWARD);
                 break;
             case MenuOptions.LEFT:
                 System.out.println("\nYou decide to turn left and walk for a bit\n");
+                myMap.movePlayer(Map.PlayerMovements.LEFT);
                 break;
             case MenuOptions.RIGHT:
                 System.out.println("\nYou decide to turn right and walk for a bit\n");
+                myMap.movePlayer(Map.PlayerMovements.RIGHT);
                 break;
             case MenuOptions.BACKWARD:
                 System.out.println("\nYou decide to turn around and walk for a bit\n");
+                myMap.movePlayer(Map.PlayerMovements.BACKWARD);
                 break;
             case MenuOptions.DONOTHING:
                 System.out.println("\nYou decide to do nothing for a while\n");
@@ -175,7 +178,7 @@ class Menu{
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
-    private enum PlayerMovements {FORWARD, LEFT, BACKWARD, RIGHT}
+    public enum PlayerMovements {FORWARD, LEFT, BACKWARD, RIGHT}
     private int width;
     private int height;
     private Directions playerFront;
