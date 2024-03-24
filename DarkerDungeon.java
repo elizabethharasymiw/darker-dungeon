@@ -112,6 +112,10 @@ class Menu{
             userOption = MenuOptions.values()[userNumber];
         }
 
+        if(unlockedOptions.get(userOption.ordinal()) == false){
+            userOption = MenuOptions.ZERO;
+        }
+
         return userOption;
     }
 
