@@ -21,6 +21,7 @@ public class main{
         Scanner scanner = new Scanner(System.in);
         Boolean trapped = true;
 
+        myMenu.clearScreen();
         System.out.println("\nYou wake up to pitch blackness\n");
 
         while(trapped){
@@ -28,7 +29,7 @@ public class main{
             myMenu.printMenu();
             String userRawInput = scanner.nextLine();
             Menu.MenuOptions userOption = myMenu.parseUserInput(userRawInput);
-            // TODO: clear screen
+            myMenu.clearScreen();
             trapped = myMenu.printAndDoResponse(userOption);
         }
 
@@ -167,6 +168,11 @@ class Menu{
         unlockedOptions.set(MenuOptions.LEFT.ordinal(), myMap.checkPlayerLEFT());
         unlockedOptions.set(MenuOptions.BACKWARD.ordinal(), myMap.checkPlayerBACKWARD());
         unlockedOptions.set(MenuOptions.RIGHT.ordinal(), myMap.checkPlayerRIGHT());
+    }
+
+    public void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
 
