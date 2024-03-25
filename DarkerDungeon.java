@@ -65,19 +65,19 @@ class Menu{
             MenuOptions index = MenuOptions.values()[i];
             if(unlockedOptions.get(i)){
                 switch(index){
-                    case MenuOptions.DONOTHING:
+                    case DONOTHING:
                         System.out.println(MenuOptions.DONOTHING.ordinal() + ": Do Nothing");
                         break;
-                    case MenuOptions.FORWARD:
+                    case FORWARD:
                         System.out.println(MenuOptions.FORWARD.ordinal() + ": Walk Forward");
                         break;
-                    case MenuOptions.TURNLEFT:
+                    case TURNLEFT:
                         System.out.println(MenuOptions.TURNLEFT.ordinal() + ": Turn Left");
                         break;
-                    case MenuOptions.TURNRIGHT:
+                    case TURNRIGHT:
                         System.out.println(MenuOptions.TURNRIGHT.ordinal() + ": Turn Right");
                         break;
-                    case MenuOptions.OPENDOOR:
+                    case OPENDOOR:
                         System.out.println(MenuOptions.OPENDOOR.ordinal() + ": Open Door");
                         break;
                     default:
@@ -124,22 +124,22 @@ class Menu{
      */
     public Boolean printAndDoResponse(MenuOptions userOption){
         switch(userOption){
-            case MenuOptions.FORWARD:
+            case FORWARD:
                 System.out.println("\nYou decide to walk for a bit\n");
                 myMap.movePlayer(Map.PlayerMovements.FORWARD);
                 break;
-            case MenuOptions.TURNLEFT:
+            case TURNLEFT:
                 System.out.println("\nYou decide to turn left\n");
                 myMap.turnPlayerLeft();
                 break;
-            case MenuOptions.TURNRIGHT:
+            case TURNRIGHT:
                 System.out.println("\nYou decide to turn right\n");
                 myMap.turnPlayerRight();
                 break;
-            case MenuOptions.DONOTHING:
+            case DONOTHING:
                 System.out.println("\nYou decide to do nothing for a while\n");
                 break;
-            case MenuOptions.OPENDOOR:
+            case OPENDOOR:
                 System.out.println("     \\       /");
                 System.out.println("      \\_ _ _/");
                 System.out.println("      /  _  \\ ");
@@ -214,16 +214,16 @@ class Map{
      */
     public void movePlayer(){
         switch(playerFront){
-            case Directions.NORTH:
+            case NORTH:
                 currentLocationY--;
                 break;
-            case Directions.EAST:
+            case EAST:
                 currentLocationX++;
                 break;
-            case Directions.SOUTH:
+            case SOUTH:
                  currentLocationY++;
                 break;
-            case Directions.WEST:
+            case WEST:
                 currentLocationX--;
                 break;
         }
@@ -235,16 +235,16 @@ class Map{
      */
     public void turnPlayerLeft(){
         switch(playerFront){
-            case Directions.NORTH:
+            case NORTH:
                 playerFront = Directions.WEST;
                 break;
-            case Directions.EAST:
+            case EAST:
                 playerFront = Directions.NORTH;
                 break;
-            case Directions.SOUTH:
+            case SOUTH:
                  playerFront = Directions.EAST;
                 break;
-            case Directions.WEST:
+            case WEST:
                 playerFront = Directions.SOUTH;
                 break;
         }
@@ -256,16 +256,16 @@ class Map{
      */
     public void turnPlayerRight(){
         switch(playerFront){
-            case Directions.NORTH:
+            case NORTH:
                 playerFront = Directions.EAST;
                 break;
-            case Directions.EAST:
+            case EAST:
                 playerFront = Directions.SOUTH;
                 break;
-            case Directions.SOUTH:
+            case SOUTH:
                  playerFront = Directions.WEST;
                 break;
-            case Directions.WEST:
+            case WEST:
                 playerFront = Directions.NORTH;
                 break;
         }
@@ -289,19 +289,19 @@ class Map{
      */
     public Boolean checkPlayerFORWARD(){
         switch (playerFront){
-            case Directions.NORTH:
+            case NORTH:
                 if(currentLocationY > 0)
                     return true;
                 break;
-            case Directions.WEST:
+            case WEST:
                 if(currentLocationX > 0)
                     return true;
                 break;
-            case Directions.SOUTH:
+            case SOUTH:
                 if(currentLocationY < height)
                     return true;
                 break;
-            case Directions.EAST:
+            case EAST:
                 if(currentLocationX < width)
                     return true;
                 break;
