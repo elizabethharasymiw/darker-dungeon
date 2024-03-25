@@ -218,80 +218,16 @@ class Map{
     public void movePlayer(PlayerMovements myMove){
         switch(playerFront){
             case Directions.NORTH:
-                switch(myMove){
-                    case PlayerMovements.FORWARD:
-                        currentLocationY--;
-                        break;
-                    case PlayerMovements.LEFT:
-                        currentLocationX--;
-                        playerFront = Directions.WEST;
-                        break;
-                    case PlayerMovements.BACKWARD:
-                        currentLocationY++;
-                        playerFront = Directions.SOUTH;
-                        break;
-                    case PlayerMovements.RIGHT:
-                        currentLocationX++;
-                        playerFront = Directions.EAST;
-                        break;
-                }
+                currentLocationY--;
                 break;
             case Directions.EAST:
-                switch(myMove){
-                    case PlayerMovements.FORWARD:
-                        currentLocationX++;
-                        break;
-                    case PlayerMovements.LEFT:
-                        currentLocationY--;
-                        playerFront = Directions.NORTH;
-                        break;
-                    case PlayerMovements.BACKWARD:
-                        currentLocationX--;
-                        playerFront = Directions.WEST;
-                        break;
-                    case PlayerMovements.RIGHT:
-                        currentLocationY++;
-                        playerFront = Directions.SOUTH;
-                        break;
-                }
+                currentLocationX++;
                 break;
             case Directions.SOUTH:
-                switch(myMove){
-                    case PlayerMovements.FORWARD:
-                        currentLocationY++;
-                        break;
-                    case PlayerMovements.LEFT:
-                        currentLocationX++;
-                        playerFront = Directions.EAST;
-                        break;
-                    case PlayerMovements.BACKWARD:
-                        currentLocationY--;
-                        playerFront = Directions.NORTH;
-                        break;
-                    case PlayerMovements.RIGHT:
-                        currentLocationX--;
-                        playerFront = Directions.WEST;
-                        break;
-                }
+                 currentLocationY++;
                 break;
             case Directions.WEST:
-                switch(myMove){
-                    case PlayerMovements.FORWARD:
-                        currentLocationX--;
-                        break;
-                    case PlayerMovements.LEFT:
-                        currentLocationY++;
-                        playerFront = Directions.SOUTH;
-                        break;
-                    case PlayerMovements.BACKWARD:
-                        currentLocationX++;
-                        playerFront = Directions.EAST;
-                        break;
-                    case PlayerMovements.RIGHT:
-                        currentLocationY--;
-                        playerFront = Directions.NORTH;
-                        break;
-                }
+                currentLocationX--;
                 break;
         }
     }
