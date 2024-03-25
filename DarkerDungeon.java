@@ -130,11 +130,11 @@ class Menu{
                 break;
             case MenuOptions.TURNLEFT:
                 System.out.println("\nYou decide to turn left\n");
-                myMap.movePlayer(Map.PlayerMovements.TURNLEFT);
+                myMap.turnPlayerLeft();
                 break;
             case MenuOptions.TURNRIGHT:
                 System.out.println("\nYou decide to turn right\n");
-                myMap.movePlayer(Map.PlayerMovements.TURNRIGHT);
+                myMap.turnPlayerRight();
                 break;
             case MenuOptions.DONOTHING:
                 System.out.println("\nYou decide to do nothing for a while\n");
@@ -225,6 +225,48 @@ class Map{
                 break;
             case Directions.WEST:
                 currentLocationX--;
+                break;
+        }
+    }
+
+    /**
+     * @brief Function to update the players direction for a 90 degree
+     *        left turn
+     */
+    public void turnPlayerLeft(){
+        switch(playerFront){
+            case Directions.NORTH:
+                playerFront = Directions.WEST;
+                break;
+            case Directions.EAST:
+                playerFront = Directions.NORTH;
+                break;
+            case Directions.SOUTH:
+                 playerFront = Directions.EAST;
+                break;
+            case Directions.WEST:
+                playerFront = Directions.SOUTH;
+                break;
+        }
+    }
+
+    /**
+     * @brief Function to update the players direction for a 90 degree
+     *        right turn
+     */
+    public void turnPlayerRight(){
+        switch(playerFront){
+            case Directions.NORTH:
+                playerFront = Directions.EAST;
+                break;
+            case Directions.EAST:
+                playerFront = Directions.SOUTH;
+                break;
+            case Directions.SOUTH:
+                 playerFront = Directions.WEST;
+                break;
+            case Directions.WEST:
+                playerFront = Directions.NORTH;
                 break;
         }
     }
