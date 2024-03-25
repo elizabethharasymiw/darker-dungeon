@@ -41,7 +41,7 @@ public class main{
  * @brief Menu class that holds game state information about the program
  */
 class Menu{
-    public enum MenuOptions { ZERO, DONOTHING, FORWARD, LEFT, RIGHT, BACKWARD, OPENDOOR, END}
+    public enum MenuOptions { ZERO, DONOTHING, FORWARD, TURNLEFT, TURNRIGHT, OPENDOOR, END}
     ArrayList<Boolean> unlockedOptions;
     private Map myMap;
 
