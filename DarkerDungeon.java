@@ -129,16 +129,12 @@ class Menu{
                 myMap.movePlayer(Map.PlayerMovements.FORWARD);
                 break;
             case MenuOptions.LEFT:
-                System.out.println("\nYou decide to turn left and walk for a bit\n");
+                System.out.println("\nYou decide to turn left\n");
                 myMap.movePlayer(Map.PlayerMovements.LEFT);
                 break;
             case MenuOptions.RIGHT:
-                System.out.println("\nYou decide to turn right and walk for a bit\n");
+                System.out.println("\nYou decide to turn right\n");
                 myMap.movePlayer(Map.PlayerMovements.RIGHT);
-                break;
-            case MenuOptions.BACKWARD:
-                System.out.println("\nYou decide to turn around and walk for a bit\n");
-                myMap.movePlayer(Map.PlayerMovements.BACKWARD);
                 break;
             case MenuOptions.DONOTHING:
                 System.out.println("\nYou decide to do nothing for a while\n");
