@@ -41,7 +41,7 @@ public class main{
  * @brief Menu class that holds game state information about the program
  */
 class Menu{
-    public enum MenuOptions { ZERO, DONOTHING, FORWARD, LEFT, RIGHT, BACKWARD, OPENDOOR, END}
+    public enum MenuOptions { ZERO, DONOTHING, FORWARD, TURNLEFT, TURNRIGHT, OPENDOOR, END}
     ArrayList<Boolean> unlockedOptions;
     private Map myMap;
 
@@ -65,22 +65,19 @@ class Menu{
             MenuOptions index = MenuOptions.values()[i];
             if(unlockedOptions.get(i)){
                 switch(index){
-                    case MenuOptions.DONOTHING:
+                    case DONOTHING:
                         System.out.println(MenuOptions.DONOTHING.ordinal() + ": Do Nothing");
                         break;
-                    case MenuOptions.FORWARD:
+                    case FORWARD:
                         System.out.println(MenuOptions.FORWARD.ordinal() + ": Walk Forward");
                         break;
-                    case MenuOptions.LEFT:
-                        System.out.println(MenuOptions.LEFT.ordinal() + ": Walk Left");
+                    case TURNLEFT:
+                        System.out.println(MenuOptions.TURNLEFT.ordinal() + ": Turn Left");
                         break;
-                    case MenuOptions.RIGHT:
-                        System.out.println(MenuOptions.RIGHT.ordinal() + ": Walk Right");
+                    case TURNRIGHT:
+                        System.out.println(MenuOptions.TURNRIGHT.ordinal() + ": Turn Right");
                         break;
-                    case MenuOptions.BACKWARD:
-                        System.out.println(MenuOptions.BACKWARD.ordinal() + ": Backtrack");
-                        break;
-                    case MenuOptions.OPENDOOR:
+                    case OPENDOOR:
                         System.out.println(MenuOptions.OPENDOOR.ordinal() + ": Open Door");
                         break;
                     default:
@@ -127,26 +124,22 @@ class Menu{
      */
     public Boolean printAndDoResponse(MenuOptions userOption){
         switch(userOption){
-            case MenuOptions.FORWARD:
+            case FORWARD:
                 System.out.println("\nYou decide to walk for a bit\n");
-                myMap.movePlayer(Map.PlayerMovements.FORWARD);
+                myMap.movePlayer();
                 break;
-            case MenuOptions.LEFT:
-                System.out.println("\nYou decide to turn left and walk for a bit\n");
-                myMap.movePlayer(Map.PlayerMovements.LEFT);
+            case TURNLEFT:
+                System.out.println("\nYou decide to turn left\n");
+                myMap.turnPlayerLeft();
                 break;
-            case MenuOptions.RIGHT:
-                System.out.println("\nYou decide to turn right and walk for a bit\n");
-                myMap.movePlayer(Map.PlayerMovements.RIGHT);
+            case TURNRIGHT:
+                System.out.println("\nYou decide to turn right\n");
+                myMap.turnPlayerRight();
                 break;
-            case MenuOptions.BACKWARD:
-                System.out.println("\nYou decide to turn around and walk for a bit\n");
-                myMap.movePlayer(Map.PlayerMovements.BACKWARD);
-                break;
-            case MenuOptions.DONOTHING:
+            case DONOTHING:
                 System.out.println("\nYou decide to do nothing for a while\n");
                 break;
-            case MenuOptions.OPENDOOR:
+            case OPENDOOR:
                 System.out.println("     \\       /");
                 System.out.println("      \\_ _ _/");
                 System.out.println("      /  _  \\ ");
@@ -173,9 +166,6 @@ class Menu{
     public void updateMenu(){
         unlockedOptions.set(MenuOptions.OPENDOOR.ordinal(), myMap.checkExit());
         unlockedOptions.set(MenuOptions.FORWARD.ordinal(), myMap.checkPlayerFORWARD());
-        unlockedOptions.set(MenuOptions.LEFT.ordinal(), myMap.checkPlayerLEFT());
-        unlockedOptions.set(MenuOptions.BACKWARD.ordinal(), myMap.checkPlayerBACKWARD());
-        unlockedOptions.set(MenuOptions.RIGHT.ordinal(), myMap.checkPlayerRIGHT());
     }
 
     public void clearScreen() {
@@ -192,7 +182,6 @@ class Menu{
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
-    public enum PlayerMovements {FORWARD, LEFT, BACKWARD, RIGHT}
     private int width;
     private int height;
     private Directions playerFront;
@@ -220,86 +209,64 @@ class Map{
     }
 
     /**
-     * @brief Function to update player information based on a requested move action
+     * @brief Function to update player location to be 1 square forward
      * @apiNote Warning this function does not do bounds checking for you
      */
-    public void movePlayer(PlayerMovements myMove){
+    public void movePlayer(){
         switch(playerFront){
-            case Directions.NORTH:
-                switch(myMove){
-                    case PlayerMovements.FORWARD:
-                        currentLocationY--;
-                        break;
-                    case PlayerMovements.LEFT:
-                        currentLocationX--;
-                        playerFront = Directions.WEST;
-                        break;
-                    case PlayerMovements.BACKWARD:
-                        currentLocationY++;
-                        playerFront = Directions.SOUTH;
-                        break;
-                    case PlayerMovements.RIGHT:
-                        currentLocationX++;
-                        playerFront = Directions.EAST;
-                        break;
-                }
+            case NORTH:
+                currentLocationY--;
                 break;
-            case Directions.EAST:
-                switch(myMove){
-                    case PlayerMovements.FORWARD:
-                        currentLocationX++;
-                        break;
-                    case PlayerMovements.LEFT:
-                        currentLocationY--;
-                        playerFront = Directions.NORTH;
-                        break;
-                    case PlayerMovements.BACKWARD:
-                        currentLocationX--;
-                        playerFront = Directions.WEST;
-                        break;
-                    case PlayerMovements.RIGHT:
-                        currentLocationY++;
-                        playerFront = Directions.SOUTH;
-                        break;
-                }
+            case EAST:
+                currentLocationX++;
                 break;
-            case Directions.SOUTH:
-                switch(myMove){
-                    case PlayerMovements.FORWARD:
-                        currentLocationY++;
-                        break;
-                    case PlayerMovements.LEFT:
-                        currentLocationX++;
-                        playerFront = Directions.EAST;
-                        break;
-                    case PlayerMovements.BACKWARD:
-                        currentLocationY--;
-                        playerFront = Directions.NORTH;
-                        break;
-                    case PlayerMovements.RIGHT:
-                        currentLocationX--;
-                        playerFront = Directions.WEST;
-                        break;
-                }
+            case SOUTH:
+                 currentLocationY++;
                 break;
-            case Directions.WEST:
-                switch(myMove){
-                    case PlayerMovements.FORWARD:
-                        currentLocationX--;
-                        break;
-                    case PlayerMovements.LEFT:
-                        currentLocationY++;
-                        playerFront = Directions.SOUTH;
-                        break;
-                    case PlayerMovements.BACKWARD:
-                        currentLocationX++;
-                        playerFront = Directions.EAST;
-                        break;
-                    case PlayerMovements.RIGHT:
-                        currentLocationY--;
-                        playerFront = Directions.NORTH;
-                        break;
-                }
+            case WEST:
+                currentLocationX--;
+                break;
+        }
+    }
+
+    /**
+     * @brief Function to update the players direction for a 90 degree
+     *        left turn
+     */
+    public void turnPlayerLeft(){
+        switch(playerFront){
+            case NORTH:
+                playerFront = Directions.WEST;
+                break;
+            case EAST:
+                playerFront = Directions.NORTH;
+                break;
+            case SOUTH:
+                 playerFront = Directions.EAST;
+                break;
+            case WEST:
+                playerFront = Directions.SOUTH;
+                break;
+        }
+    }
+
+    /**
+     * @brief Function to update the players direction for a 90 degree
+     *        right turn
+     */
+    public void turnPlayerRight(){
+        switch(playerFront){
+            case NORTH:
+                playerFront = Directions.EAST;
+                break;
+            case EAST:
+                playerFront = Directions.SOUTH;
+                break;
+            case SOUTH:
+                 playerFront = Directions.WEST;
+                break;
+            case WEST:
+                playerFront = Directions.NORTH;
                 break;
         }
     }
@@ -322,105 +289,24 @@ class Map{
      */
     public Boolean checkPlayerFORWARD(){
         switch (playerFront){
-            case Directions.NORTH:
+            case NORTH:
                 if(currentLocationY > 0)
                     return true;
                 break;
-            case Directions.WEST:
+            case WEST:
                 if(currentLocationX > 0)
                     return true;
                 break;
-            case Directions.SOUTH:
+            case SOUTH:
                 if(currentLocationY < height)
                     return true;
                 break;
-            case Directions.EAST:
+            case EAST:
                 if(currentLocationX < width)
                     return true;
                 break;
         }
 
         return  false;
-    }
-
-    /**
-     * @brief Function to check if the player can move left
-     * @return boolean based on if the player can move left or not
-     */
-    public Boolean checkPlayerLEFT(){
-        switch (playerFront){
-            case Directions.NORTH:
-                if(currentLocationX > 0)
-                    return true;
-                break;
-            case Directions.WEST:
-                if(currentLocationY < height)
-                    return true;
-                break;
-            case Directions.SOUTH:
-                if(currentLocationX < width)
-                    return true;
-                break;
-            case Directions.EAST:
-                if(currentLocationY > 0)
-                    return true;
-                break;
-        }
-
-        return false;
-    }
-
-    /**
-     * @brief Function to check if the player can move backward
-     * @return boolean based on if the player can move backward or not
-     */
-    public Boolean checkPlayerBACKWARD(){
-        switch (playerFront){
-            case Directions.NORTH:
-                if(currentLocationY < height)
-                    return true;
-                break;
-            case Directions.WEST:
-                if(currentLocationX < width)
-                    return true;
-                break;
-            case Directions.SOUTH:
-                if(currentLocationY > 0)
-                    return true;
-                break;
-            case Directions.EAST:
-                if(currentLocationX > 0)
-                    return true;
-                break;
-        }
-
-        return false;
-    }
-
-    /**
-     * @brief Function to check if the player can move right
-     * @return boolean based on if the player can move tight or not
-     */
-    public Boolean checkPlayerRIGHT(){
-        switch (playerFront){
-            case Directions.NORTH:
-                if(currentLocationX < width)
-                    return true;
-                break;
-            case Directions.WEST:
-                if(currentLocationY > 0)
-                    return true;
-                break;
-            case Directions.SOUTH:
-                if(currentLocationX > 0)
-                    return true;
-                break;
-            case Directions.EAST:
-                if(currentLocationY < height)
-                    return true;
-                break;
-        }
-
-        return false;
     }
 }
