@@ -126,7 +126,7 @@ class Menu{
         switch(userOption){
             case FORWARD:
                 System.out.println("\nYou decide to walk for a bit\n");
-                myMap.movePlayer(Map.PlayerMovements.FORWARD);
+                myMap.movePlayer();
                 break;
             case TURNLEFT:
                 System.out.println("\nYou decide to turn left\n");
