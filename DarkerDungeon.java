@@ -167,7 +167,6 @@ class Menu{
         unlockedOptions.set(MenuOptions.OPENDOOR.ordinal(), myMap.checkExit());
         unlockedOptions.set(MenuOptions.FORWARD.ordinal(), myMap.checkPlayerFORWARD());
         unlockedOptions.set(MenuOptions.LEFT.ordinal(), myMap.checkPlayerLEFT());
-        unlockedOptions.set(MenuOptions.BACKWARD.ordinal(), myMap.checkPlayerBACKWARD());
         unlockedOptions.set(MenuOptions.RIGHT.ordinal(), myMap.checkPlayerRIGHT());
     }
 
