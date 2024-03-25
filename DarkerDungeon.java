@@ -147,6 +147,14 @@ class Menu{
                 System.out.println("\nYou decide to do nothing for a while\n");
                 break;
             case MenuOptions.OPENDOOR:
+                System.out.println("     \\       /");
+                System.out.println("      \\_ _ _/");
+                System.out.println("      /  _  \\ ");
+                System.out.println("__ __/ /   \\ \\__ __");
+                System.out.println("     \\ \\ _ / /");
+                System.out.println("      \\ _ _ / ");
+                System.out.println("      /     \\");
+                System.out.println("     /       \\");
                 System.out.println("\nAs you open the door you feel the warmth of the sun");
                 System.out.println("\nCongratulations!");
                 System.out.println("\nYou Escaped\n");
