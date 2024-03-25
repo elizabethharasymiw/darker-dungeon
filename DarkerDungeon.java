@@ -71,11 +71,11 @@ class Menu{
                     case MenuOptions.FORWARD:
                         System.out.println(MenuOptions.FORWARD.ordinal() + ": Walk Forward");
                         break;
-                    case MenuOptions.LEFT:
-                        System.out.println(MenuOptions.LEFT.ordinal() + ": Turn Left");
+                    case MenuOptions.TURNLEFT:
+                        System.out.println(MenuOptions.TURNLEFT.ordinal() + ": Turn Left");
                         break;
-                    case MenuOptions.RIGHT:
-                        System.out.println(MenuOptions.RIGHT.ordinal() + ": Turn Right");
+                    case MenuOptions.TURNRIGHT:
+                        System.out.println(MenuOptions.TURNRIGHT.ordinal() + ": Turn Right");
                         break;
                     case MenuOptions.OPENDOOR:
                         System.out.println(MenuOptions.OPENDOOR.ordinal() + ": Open Door");
@@ -128,13 +128,13 @@ class Menu{
                 System.out.println("\nYou decide to walk for a bit\n");
                 myMap.movePlayer(Map.PlayerMovements.FORWARD);
                 break;
-            case MenuOptions.LEFT:
+            case MenuOptions.TURNLEFT:
                 System.out.println("\nYou decide to turn left\n");
-                myMap.movePlayer(Map.PlayerMovements.LEFT);
+                myMap.movePlayer(Map.PlayerMovements.TURNLEFT);
                 break;
-            case MenuOptions.RIGHT:
+            case MenuOptions.TURNRIGHT:
                 System.out.println("\nYou decide to turn right\n");
-                myMap.movePlayer(Map.PlayerMovements.RIGHT);
+                myMap.movePlayer(Map.PlayerMovements.TURNRIGHT);
                 break;
             case MenuOptions.DONOTHING:
                 System.out.println("\nYou decide to do nothing for a while\n");
