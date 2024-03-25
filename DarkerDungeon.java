@@ -72,13 +72,10 @@ class Menu{
                         System.out.println(MenuOptions.FORWARD.ordinal() + ": Walk Forward");
                         break;
                     case MenuOptions.LEFT:
-                        System.out.println(MenuOptions.LEFT.ordinal() + ": Walk Left");
+                        System.out.println(MenuOptions.LEFT.ordinal() + ": Turn Left");
                         break;
                     case MenuOptions.RIGHT:
-                        System.out.println(MenuOptions.RIGHT.ordinal() + ": Walk Right");
-                        break;
-                    case MenuOptions.BACKWARD:
-                        System.out.println(MenuOptions.BACKWARD.ordinal() + ": Backtrack");
+                        System.out.println(MenuOptions.RIGHT.ordinal() + ": Turn Right");
                         break;
                     case MenuOptions.OPENDOOR:
                         System.out.println(MenuOptions.OPENDOOR.ordinal() + ": Open Door");
