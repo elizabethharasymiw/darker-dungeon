@@ -166,8 +166,6 @@ class Menu{
     public void updateMenu(){
         unlockedOptions.set(MenuOptions.OPENDOOR.ordinal(), myMap.checkExit());
         unlockedOptions.set(MenuOptions.FORWARD.ordinal(), myMap.checkPlayerFORWARD());
-        unlockedOptions.set(MenuOptions.LEFT.ordinal(), myMap.checkPlayerLEFT());
-        unlockedOptions.set(MenuOptions.RIGHT.ordinal(), myMap.checkPlayerRIGHT());
     }
 
     public void clearScreen() {
@@ -184,7 +182,6 @@ class Menu{
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
-    public enum PlayerMovements {FORWARD, LEFT, BACKWARD, RIGHT}
     private int width;
     private int height;
     private Directions playerFront;
@@ -212,10 +209,10 @@ class Map{
     }
 
     /**
-     * @brief Function to update player information based on a requested move action
+     * @brief Function to update player location to be 1 square forward
      * @apiNote Warning this function does not do bounds checking for you
      */
-    public void movePlayer(PlayerMovements myMove){
+    public void movePlayer(){
         switch(playerFront){
             case Directions.NORTH:
                 currentLocationY--;
@@ -269,86 +266,5 @@ class Map{
         }
 
         return  false;
-    }
-
-    /**
-     * @brief Function to check if the player can move left
-     * @return boolean based on if the player can move left or not
-     */
-    public Boolean checkPlayerLEFT(){
-        switch (playerFront){
-            case Directions.NORTH:
-                if(currentLocationX > 0)
-                    return true;
-                break;
-            case Directions.WEST:
-                if(currentLocationY < height)
-                    return true;
-                break;
-            case Directions.SOUTH:
-                if(currentLocationX < width)
-                    return true;
-                break;
-            case Directions.EAST:
-                if(currentLocationY > 0)
-                    return true;
-                break;
-        }
-
-        return false;
-    }
-
-    /**
-     * @brief Function to check if the player can move backward
-     * @return boolean based on if the player can move backward or not
-     */
-    public Boolean checkPlayerBACKWARD(){
-        switch (playerFront){
-            case Directions.NORTH:
-                if(currentLocationY < height)
-                    return true;
-                break;
-            case Directions.WEST:
-                if(currentLocationX < width)
-                    return true;
-                break;
-            case Directions.SOUTH:
-                if(currentLocationY > 0)
-                    return true;
-                break;
-            case Directions.EAST:
-                if(currentLocationX > 0)
-                    return true;
-                break;
-        }
-
-        return false;
-    }
-
-    /**
-     * @brief Function to check if the player can move right
-     * @return boolean based on if the player can move tight or not
-     */
-    public Boolean checkPlayerRIGHT(){
-        switch (playerFront){
-            case Directions.NORTH:
-                if(currentLocationX < width)
-                    return true;
-                break;
-            case Directions.WEST:
-                if(currentLocationY > 0)
-                    return true;
-                break;
-            case Directions.SOUTH:
-                if(currentLocationX > 0)
-                    return true;
-                break;
-            case Directions.EAST:
-                if(currentLocationY < height)
-                    return true;
-                break;
-        }
-
-        return false;
     }
 }
