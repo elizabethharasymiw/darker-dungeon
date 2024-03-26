@@ -22,7 +22,8 @@ public class main{
         Boolean trapped = true;
 
         myMenu.clearScreen();
-        System.out.println("\nYou wake up to pitch blackness\n");
+        System.out.println("\n You wake up to a unfamilar dark room");
+        System.out.println(" You see the dim outline of a large rectangle\n");
 
         while(trapped){
             myMenu.updateMenu();
@@ -59,26 +60,31 @@ class Menu{
      */
     public void printMenu(){
 
-        System.out.println("What would you like todo?");
+        if(myMap.checkExit()){
+            clearScreen();
+            printASCIIDoor();
+        }
+
+        System.out.println(" " + "What would you like todo?");
 
         for(int i = 0; i < Menu.MenuOptions.END.ordinal(); i++){
             MenuOptions index = MenuOptions.values()[i];
             if(unlockedOptions.get(i)){
                 switch(index){
                     case DONOTHING:
-                        System.out.println(MenuOptions.DONOTHING.ordinal() + ": Do Nothing");
+                        System.out.println(" " + MenuOptions.DONOTHING.ordinal() + ": Do Nothing");
                         break;
                     case FORWARD:
-                        System.out.println(MenuOptions.FORWARD.ordinal() + ": Walk Forward");
+                        System.out.println(" " + MenuOptions.FORWARD.ordinal() + ": Walk Forward");
                         break;
                     case TURNLEFT:
-                        System.out.println(MenuOptions.TURNLEFT.ordinal() + ": Turn Left");
+                        System.out.println(" " + MenuOptions.TURNLEFT.ordinal() + ": Turn Left");
                         break;
                     case TURNRIGHT:
-                        System.out.println(MenuOptions.TURNRIGHT.ordinal() + ": Turn Right");
+                        System.out.println(" " + MenuOptions.TURNRIGHT.ordinal() + ": Turn Right");
                         break;
                     case OPENDOOR:
-                        System.out.println(MenuOptions.OPENDOOR.ordinal() + ": Open Door");
+                        System.out.println(" " + MenuOptions.OPENDOOR.ordinal() + ": Open Door");
                         break;
                     default:
                         break;
@@ -125,35 +131,26 @@ class Menu{
     public Boolean printAndDoResponse(MenuOptions userOption){
         switch(userOption){
             case FORWARD:
-                System.out.println("\nYou decide to walk for a bit\n");
+                System.out.println("\n You decide to walk for a bit\n");
                 myMap.movePlayer();
                 break;
             case TURNLEFT:
-                System.out.println("\nYou decide to turn left\n");
+                System.out.println("\n You decide to turn left\n");
                 myMap.turnPlayerLeft();
                 break;
             case TURNRIGHT:
-                System.out.println("\nYou decide to turn right\n");
+                System.out.println("\n You decide to turn right\n");
                 myMap.turnPlayerRight();
                 break;
             case DONOTHING:
-                System.out.println("\nYou decide to do nothing for a while\n");
+                System.out.println("\n You decide to do nothing for a while\n");
                 break;
             case OPENDOOR:
-                System.out.println("     \\       /");
-                System.out.println("      \\_ _ _/");
-                System.out.println("      /  _  \\ ");
-                System.out.println("__ __/ /   \\ \\__ __");
-                System.out.println("     \\ \\ _ / /");
-                System.out.println("      \\ _ _ / ");
-                System.out.println("      /     \\");
-                System.out.println("     /       \\");
-                System.out.println("\nAs you open the door you feel the warmth of the sun");
-                System.out.println("\nCongratulations!");
-                System.out.println("\nYou Escaped\n");
+                printASCIISun();
+                System.out.println("\n You have Escaped\n");
                 return false; // break;
             default:
-                System.out.println("\nYou can't do that\n");
+                System.out.println("\n You can't do that\n");
                 break;
         }
 
@@ -166,6 +163,22 @@ class Menu{
     public void updateMenu(){
         unlockedOptions.set(MenuOptions.OPENDOOR.ordinal(), myMap.checkExit());
         unlockedOptions.set(MenuOptions.FORWARD.ordinal(), myMap.checkPlayerFORWARD());
+    }
+
+    public void printASCIIDoor(){
+        System.out.println("        ___");
+        System.out.println("       |   |");
+        System.out.println("       |  o|");
+        System.out.println("       |___|");
+        System.out.println();
+    }
+
+    public void printASCIISun(){
+        System.out.println();
+        System.out.println(   "      \\ _ /");
+        System.out.println(   "    _ /   \\ _");
+        System.out.println(   "      \\ _ /");
+        System.out.println(   "      /   \\");
     }
 
     public void clearScreen() {
