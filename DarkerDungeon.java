@@ -45,6 +45,7 @@ class Menu{
     public enum MenuOptions { ZERO, DONOTHING, FORWARD, TURNLEFT, TURNRIGHT, OPENDOOR, END}
     ArrayList<Boolean> unlockedOptions;
     private Map myMap;
+    int doNothingCount;
 
     /**
      * @brief Menu constructor that requires a starting map
@@ -53,6 +54,7 @@ class Menu{
     public Menu(Map myMap){
         this.unlockedOptions = new ArrayList<>(Collections.nCopies(Menu.MenuOptions.END.ordinal(), true));
         this.myMap = myMap;
+        this.doNothingCount = 0;
     }
 
     /**
@@ -144,6 +146,7 @@ class Menu{
                 break;
             case DONOTHING:
                 System.out.println("\n You decide to do nothing for a while\n");
+                doNothingCount++;
                 break;
             case OPENDOOR:
                 printASCIISun();
@@ -163,6 +166,7 @@ class Menu{
     public void updateMenu(){
         unlockedOptions.set(MenuOptions.OPENDOOR.ordinal(), myMap.checkExit());
         unlockedOptions.set(MenuOptions.FORWARD.ordinal(), myMap.checkPlayerFORWARD());
+        unlockedOptions.set(MenuOptions.DONOTHING.ordinal(), doNothingCheck());
     }
 
     public void printASCIIDoor(){
@@ -184,6 +188,13 @@ class Menu{
     public void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public Boolean doNothingCheck(){
+        if(doNothingCount < 3){
+            return true;
+        }
+        return false;
     }
 }
 
