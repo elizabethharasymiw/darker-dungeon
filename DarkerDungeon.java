@@ -145,8 +145,18 @@ class Menu{
                 myMap.turnPlayerRight();
                 break;
             case DONOTHING:
-                System.out.println("\n You decide to do nothing for a while\n");
                 doNothingCount++;
+                switch(doNothingCount){
+                case 1:
+                    System.out.println("\n So this is how you want to spend your time? Doing nothing? \n");
+                    break;
+                case 2:
+                    System.out.println("\n So you know there a door? You can start walking anytime now.\n");
+                    break;
+                case 3:
+                    System.out.println("\n Alright, that's enough of that.\n");
+                    break;
+                }
                 break;
             case OPENDOOR:
                 printASCIISun();
