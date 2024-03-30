@@ -29,9 +29,10 @@ public class main{
             myMenu.updateMenu();
             myMenu.printMenu();
             String userRawInput = scanner.nextLine();
-            Menu.MenuOptions userOption = myMenu.parseUserInput(userRawInput);
+            Menu.MenuOptions playerAction = myMenu.parseUserInput(userRawInput);
             myMenu.clearScreen();
-            trapped = myMenu.printAndDoResponse(userOption);
+            trapped = myMenu.doPlayerAction(playerAction);
+            myMenu.printScreen(playerAction);
         }
 
         scanner.close();
@@ -61,11 +62,6 @@ class Menu{
      * @brief Function to print out the current available player options
      */
     public void printMenu(){
-
-        if(myMap.checkExit()){
-            clearScreen();
-            printASCIIDoor();
-        }
 
         System.out.println(" " + "What would you like todo?");
 
@@ -113,39 +109,66 @@ class Menu{
         }
 
         // Convert users number into a menu option
-        MenuOptions userOption = MenuOptions.ZERO;
+        MenuOptions playerAction = MenuOptions.ZERO;
         if(userNumber > MenuOptions.ZERO.ordinal() && userNumber < MenuOptions.END.ordinal()){
-            userOption = MenuOptions.values()[userNumber];
+            playerAction = MenuOptions.values()[userNumber];
         }
 
-        if(unlockedOptions.get(userOption.ordinal()) == false){
-            userOption = MenuOptions.ZERO;
+        if(unlockedOptions.get(playerAction.ordinal()) == false){
+            playerAction = MenuOptions.ZERO;
         }
 
-        return userOption;
+        return playerAction;
     }
 
     /**
-     * @brief Function to process and report back what happened to a player action
-     * @param userOption The action the player is trying to do
+     * @brief Function to process a player action
+     * @param playerAction The action the player is trying to do
      * @return Boolean state of whether or not the player is still trapped
      */
-    public Boolean printAndDoResponse(MenuOptions userOption){
-        switch(userOption){
+    public Boolean doPlayerAction(MenuOptions playerAction){
+        switch(playerAction){
             case FORWARD:
-                System.out.println("\n You decide to walk for a bit\n");
                 myMap.movePlayer();
                 break;
             case TURNLEFT:
-                System.out.println("\n You decide to turn left\n");
                 myMap.turnPlayerLeft();
                 break;
             case TURNRIGHT:
-                System.out.println("\n You decide to turn right\n");
                 myMap.turnPlayerRight();
                 break;
             case DONOTHING:
                 doNothingCount++;
+                break;
+            case OPENDOOR:
+                return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @brief Function to print the current display based on the game state
+     * @param lastPlayerAction The last action the player did
+     */
+    public void printScreen(MenuOptions lastPlayerAction){
+
+        if(myMap.checkExit()){
+            clearScreen();
+            printASCIIDoor();
+        }
+
+        switch(lastPlayerAction){
+            case FORWARD:
+                System.out.println("\n You decide to walk for a bit\n");
+                break;
+            case TURNLEFT:
+                System.out.println("\n You decide to turn left\n");
+                break;
+            case TURNRIGHT:
+                System.out.println("\n You decide to turn right\n");
+                break;
+            case DONOTHING:
                 switch(doNothingCount){
                 case 1:
                     System.out.println("\n So this is how you want to spend your time? Doing nothing? \n");
@@ -159,15 +182,14 @@ class Menu{
                 }
                 break;
             case OPENDOOR:
+                clearScreen();
                 printASCIISun();
                 System.out.println("\n You have Escaped\n");
-                return false; // break;
+                break;
             default:
                 System.out.println("\n You can't do that\n");
                 break;
         }
-
-        return true;
     }
 
     /**
