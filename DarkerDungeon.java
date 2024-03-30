@@ -246,7 +246,7 @@ class Menu{
  * @brief Map Class that holds state information about player and environment
  * @apiNote The map is draw from the upper left to lower right, so upper left
  *          is coordinates (0, 0), and lower right is coordinates
- *          (width - 1, height -1).
+ *          (width, height).
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
@@ -272,8 +272,8 @@ class Map{
         this.playerFront = Directions.SOUTH;
         this.currentLocationX = 0;
         this.currentLocationY = 0;
-        this.exitLocationX = width - 1;
-        this.exitLocationY = height - 1;
+        this.exitLocationX = width;
+        this.exitLocationY = height;
     }
 
     /**
