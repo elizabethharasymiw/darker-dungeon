@@ -22,8 +22,9 @@ public class main{
         Boolean trapped = true;
 
         myMenu.clearScreen();
-        System.out.println("\n You wake up to a unfamilar dark room");
-        System.out.println(" You see the dim outline of a large rectangle\n");
+        System.out.println();
+        System.out.println(" You wake up to a unfamilar dark room.");
+        System.out.println(" You see the dim outline of a door.");
 
         while(trapped){
             myMenu.updateMenu();
@@ -63,6 +64,7 @@ class Menu{
      */
     public void printMenu(){
 
+        System.out.println();
         System.out.println(" " + "What would you like todo?");
 
         for(int i = 0; i < Menu.MenuOptions.END.ordinal(); i++){
@@ -158,38 +160,49 @@ class Menu{
             printASCIIDoor();
         }
 
+        System.out.println();
+
         switch(lastPlayerAction){
             case FORWARD:
-                System.out.println("\n You decide to walk for a bit\n");
+                System.out.println(" You decide to walk for a bit.");
                 break;
             case TURNLEFT:
-                System.out.println("\n You decide to turn left\n");
+                System.out.println(" You decide to turn left.");
                 break;
             case TURNRIGHT:
-                System.out.println("\n You decide to turn right\n");
+                System.out.println(" You decide to turn right.");
                 break;
             case DONOTHING:
                 switch(doNothingCount){
                 case 1:
-                    System.out.println("\n So this is how you want to spend your time? Doing nothing? \n");
+                    System.out.println(" So this is how you want to spend your time? Doing nothing?");
                     break;
                 case 2:
-                    System.out.println("\n So you know there a door? You can start walking anytime now.\n");
+                    System.out.println(" So you know there a door? You can get out of here.");
                     break;
                 case 3:
-                    System.out.println("\n Alright, that's enough of that.\n");
+                    System.out.println(" Alright, that's enough of that.");
                     break;
                 }
                 break;
             case OPENDOOR:
                 clearScreen();
                 printASCIISun();
-                System.out.println("\n You have Escaped\n");
+                System.out.println("\n You have Escaped!\n");
                 break;
             default:
-                System.out.println("\n You can't do that\n");
+                System.out.println(" You can't do that.");
                 break;
         }
+
+        if(myMap.checkExit() && lastPlayerAction == MenuOptions.FORWARD){
+            System.out.println(" You are now standing next to the door.");
+        }
+
+        if(myMap.checkExit() && lastPlayerAction != MenuOptions.FORWARD && lastPlayerAction != MenuOptions.OPENDOOR){
+            System.out.println(" Did you try opening the door?");
+        }
+
     }
 
     /**
@@ -206,7 +219,6 @@ class Menu{
         System.out.println("       |   |");
         System.out.println("       |  o|");
         System.out.println("       |___|");
-        System.out.println();
     }
 
     public void printASCIISun(){
