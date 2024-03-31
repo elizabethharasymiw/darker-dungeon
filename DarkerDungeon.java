@@ -187,6 +187,7 @@ class Menu{
                 break;
             case OPENDOOR:
                 clearScreen();
+                System.out.println();
                 printASCIISun();
                 System.out.println("\n You have Escaped!\n");
                 break;
@@ -222,7 +223,6 @@ class Menu{
     }
 
     public void printASCIISun(){
-        System.out.println();
         System.out.println(   "      \\ _ /");
         System.out.println(   "    _ /   \\ _");
         System.out.println(   "      \\ _ /");
