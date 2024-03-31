@@ -215,6 +215,9 @@ class Menu{
         unlockedOptions.set(MenuOptions.DONOTHING.ordinal(), doNothingCheck());
     }
 
+    /**
+     * @brief Function to print an ASCII door to the screen
+     */
     public void printASCIIDoor(){
         System.out.println("        ___");
         System.out.println("       |   |");
@@ -222,6 +225,9 @@ class Menu{
         System.out.println("       |___|");
     }
 
+    /**
+     * @brief Function to print an ASCII sun to the screen
+     */
     public void printASCIISun(){
         System.out.println(   "      \\ _ /");
         System.out.println(   "    _ /   \\ _");
@@ -229,11 +235,18 @@ class Menu{
         System.out.println(   "      /   \\");
     }
 
+    /**
+     * @brief Function to clear the entire screen, screen being the console
+     */
     public void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
+    /**
+     * @brief Function to check when to disable the "Do Nothing" player action
+     * @return boolean for whether or not the "Do Nothing" option should be displayed
+     */
     public Boolean doNothingCheck(){
         if(doNothingCount < 3){
             return true;
