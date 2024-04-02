@@ -383,19 +383,19 @@ class Map{
     public Boolean checkPlayerFORWARD(){
         switch (playerFront){
             case NORTH:
-                if(currentLocationY > 0)
+                if((currentLocationY > 0) && mapGrid.get(currentLocationY - 1).get(currentLocationX) != wall)
                     return true;
                 break;
             case WEST:
-                if(currentLocationX > 0)
+                if((currentLocationX > 0) && mapGrid.get(currentLocationY).get(currentLocationX - 1) != wall)
                     return true;
                 break;
             case SOUTH:
-                if(currentLocationY < height)
+                if((currentLocationY < height) && mapGrid.get(currentLocationY + 1).get(currentLocationX) != wall)
                     return true;
                 break;
             case EAST:
-                if(currentLocationX < width)
+                if((currentLocationX < width) && mapGrid.get(currentLocationY).get(currentLocationX + 1) != wall)
                     return true;
                 break;
         }
