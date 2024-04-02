@@ -15,9 +15,7 @@ import java.util.Collections;
  */
 public class main{
     public static void main(String[] args){
-        int mapWidth = 3;
-        int mapHeight = 3;
-        Map myMap = new Map(mapWidth, mapHeight);
+        Map myMap = new Map();
         Menu myMenu = new Menu(myMap);
         Scanner scanner = new Scanner(System.in);
         Boolean trapped = true;
@@ -280,17 +278,15 @@ class Map{
 
     /**
      * @brief Map constructor that requires the maps dimensions
-     * @param width The width the map will be made with
-     * @param height The height the map will be made with
      */
-    public Map(int width, int height){
+    public Map(){
         this.width = width;
         this.height = height;
         this.playerFront = Directions.SOUTH;
         this.currentLocationX = 0;
         this.currentLocationY = 0;
-        this.exitLocationX = width;
-        this.exitLocationY = height;
+        this.exitLocationX = 5;
+        this.exitLocationY = 3;
 
         // starting map, # = wall, D = exit door
         // ######
