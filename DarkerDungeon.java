@@ -5,6 +5,7 @@
  */
 
 import java.util.Scanner;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -270,6 +271,9 @@ class Map{
     private int currentLocationY;
     private int exitLocationX;
     private int exitLocationY;
+    private ArrayList<ArrayList<Character>> mapGrid;
+    private char door = 'D';
+    private char wall = '#';
     // @TODO: Add more environment descriptions text
     // private bool nextToWall;
     // private bool inCorner;
@@ -287,6 +291,18 @@ class Map{
         this.currentLocationY = 0;
         this.exitLocationX = width;
         this.exitLocationY = height;
+
+        // starting map, # = wall, D = exit door
+        // ######
+        // #  ###
+        // #    D
+        // ######
+        this.mapGrid = new ArrayList<>(Arrays.asList(
+            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#')),
+            new ArrayList<>(Arrays.asList('#', ' ', ' ', '#', '#', '#')),
+            new ArrayList<>(Arrays.asList('#', ' ', ' ', ' ', ' ', 'D')),
+            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#'))
+        ));
     }
 
     /**
