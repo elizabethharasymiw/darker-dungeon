@@ -288,10 +288,10 @@ class Map{
         // @NOTE The map must have all edges be walls (#) to not have issues
         //       checking the player's future forward moves
         this.mapGrid = new ArrayList<>(Arrays.asList(
-            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#')),
-            new ArrayList<>(Arrays.asList('#', ' ', ' ', '#', '#', '#')),
-            new ArrayList<>(Arrays.asList('#', ' ', ' ', ' ', 'E', '#')),
-            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#'))
+            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#', '#')),
+            new ArrayList<>(Arrays.asList('#', ' ', ' ', '#', ' ', '#', '#')),
+            new ArrayList<>(Arrays.asList('#', ' ', ' ', ' ', ' ', 'E', '#')),
+            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#', '#'))
         ));
     }
 
