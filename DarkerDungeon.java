@@ -267,8 +267,6 @@ class Map{
     private Directions playerFront;
     private int currentLocationX;
     private int currentLocationY;
-    private int exitLocationX;
-    private int exitLocationY;
     private ArrayList<ArrayList<Character>> mapGrid;
     private char exitDoor = 'E';
     private char wall = '#';
@@ -369,8 +367,7 @@ class Map{
      * @return boolean based on if the player is or is not at the exit door
      */
     public Boolean checkExit(){
-        if(this.currentLocationX == this.exitLocationX &&
-           this.currentLocationY == this.exitLocationY){
+        if(mapGrid.get(currentLocationY).get(currentLocationX) == exitDoor){
             return true;
         }
         return false;
