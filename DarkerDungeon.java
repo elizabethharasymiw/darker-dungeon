@@ -270,7 +270,7 @@ class Map{
     private int exitLocationX;
     private int exitLocationY;
     private ArrayList<ArrayList<Character>> mapGrid;
-    private char door = 'D';
+    private char exitDoor = 'E';
     private char wall = '#';
     // @TODO: Add more environment descriptions text
     // private bool nextToWall;
@@ -283,12 +283,12 @@ class Map{
         this.width = 5;
         this.height = 3;
         this.playerFront = Directions.SOUTH;
-        this.currentLocationX = 0;
-        this.currentLocationY = 0;
-        this.exitLocationX = 5;
-        this.exitLocationY = 3;
+        this.currentLocationX = 1;
+        this.currentLocationY = 1;
 
-        // starting map, # = wall, D = exit door
+        // starting map, # = wall, E = exit door
+        // @NOTE The map must have all edges be walls (#) to not have issues
+        //       checking the player's future forward moves
         // ######
         // #  ###
         // #    D
@@ -296,7 +296,7 @@ class Map{
         this.mapGrid = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#')),
             new ArrayList<>(Arrays.asList('#', ' ', ' ', '#', '#', '#')),
-            new ArrayList<>(Arrays.asList('#', ' ', ' ', ' ', ' ', 'D')),
+            new ArrayList<>(Arrays.asList('#', ' ', ' ', ' ', 'E', '#')),
             new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#'))
         ));
     }
