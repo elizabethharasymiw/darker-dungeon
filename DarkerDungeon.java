@@ -287,10 +287,6 @@ class Map{
         // starting map, # = wall, E = exit door
         // @NOTE The map must have all edges be walls (#) to not have issues
         //       checking the player's future forward moves
-        // ######
-        // #  ###
-        // #    D
-        // ######
         this.mapGrid = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#')),
             new ArrayList<>(Arrays.asList('#', ' ', ' ', '#', '#', '#')),
