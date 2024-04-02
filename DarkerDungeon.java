@@ -280,8 +280,8 @@ class Map{
      * @brief Map constructor that requires the maps dimensions
      */
     public Map(){
-        this.width = width;
-        this.height = height;
+        this.width = 5;
+        this.height = 3;
         this.playerFront = Directions.SOUTH;
         this.currentLocationX = 0;
         this.currentLocationY = 0;
