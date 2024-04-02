@@ -5,6 +5,7 @@
  */
 
 import java.util.Scanner;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -14,9 +15,7 @@ import java.util.Collections;
  */
 public class main{
     public static void main(String[] args){
-        int mapWidth = 3;
-        int mapHeight = 3;
-        Map myMap = new Map(mapWidth, mapHeight);
+        Map myMap = new Map();
         Menu myMenu = new Menu(myMap);
         Scanner scanner = new Scanner(System.in);
         Boolean trapped = true;
@@ -268,25 +267,32 @@ class Map{
     private Directions playerFront;
     private int currentLocationX;
     private int currentLocationY;
-    private int exitLocationX;
-    private int exitLocationY;
+    private ArrayList<ArrayList<Character>> mapGrid;
+    private char exitDoor = 'E';
+    private char wall = '#';
     // @TODO: Add more environment descriptions text
     // private bool nextToWall;
     // private bool inCorner;
 
     /**
      * @brief Map constructor that requires the maps dimensions
-     * @param width The width the map will be made with
-     * @param height The height the map will be made with
      */
-    public Map(int width, int height){
-        this.width = width;
-        this.height = height;
+    public Map(){
+        this.width = 5;
+        this.height = 3;
         this.playerFront = Directions.SOUTH;
-        this.currentLocationX = 0;
-        this.currentLocationY = 0;
-        this.exitLocationX = width;
-        this.exitLocationY = height;
+        this.currentLocationX = 1;
+        this.currentLocationY = 1;
+
+        // starting map, # = wall, E = exit door
+        // @NOTE The map must have all edges be walls (#) to not have issues
+        //       checking the player's future forward moves
+        this.mapGrid = new ArrayList<>(Arrays.asList(
+            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#')),
+            new ArrayList<>(Arrays.asList('#', ' ', ' ', '#', '#', '#')),
+            new ArrayList<>(Arrays.asList('#', ' ', ' ', ' ', 'E', '#')),
+            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#'))
+        ));
     }
 
     /**
@@ -357,8 +363,7 @@ class Map{
      * @return boolean based on if the player is or is not at the exit door
      */
     public Boolean checkExit(){
-        if(this.currentLocationX == this.exitLocationX &&
-           this.currentLocationY == this.exitLocationY){
+        if(mapGrid.get(currentLocationY).get(currentLocationX) == exitDoor){
             return true;
         }
         return false;
@@ -371,19 +376,19 @@ class Map{
     public Boolean checkPlayerFORWARD(){
         switch (playerFront){
             case NORTH:
-                if(currentLocationY > 0)
+                if(mapGrid.get(currentLocationY - 1).get(currentLocationX) != wall)
                     return true;
                 break;
             case WEST:
-                if(currentLocationX > 0)
+                if(mapGrid.get(currentLocationY).get(currentLocationX - 1) != wall)
                     return true;
                 break;
             case SOUTH:
-                if(currentLocationY < height)
+                if(mapGrid.get(currentLocationY + 1).get(currentLocationX) != wall)
                     return true;
                 break;
             case EAST:
-                if(currentLocationX < width)
+                if(mapGrid.get(currentLocationY).get(currentLocationX + 1) != wall)
                     return true;
                 break;
         }
