@@ -199,10 +199,10 @@ class Menu{
             case DONOTHING:
                 switch(doNothingCount){
                 case 1:
-                    System.out.print(" So this is how you want to spend your time? Doing nothing?");
+                    System.out.print(" So this is how you want to spend your time?");
                     break;
                 case 2:
-                    System.out.print(" So you know there a door? You can get out of here.");
+                    System.out.print(" So you know there a door?");
                     break;
                 case 3:
                     System.out.print(" Alright, that's enough of that.");
