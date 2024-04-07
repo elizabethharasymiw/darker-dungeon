@@ -213,10 +213,10 @@ class Menu{
                 clearScreen();
                 System.out.println();
                 printASCIISun();
-                System.out.println("\n You have Escaped!\n");
+                System.out.print("\n You have Escaped!\n");
                 break;
             default:
-                System.out.println(" You can't do that.");
+                System.out.print(" You can't do that.");
                 break;
         }
 
