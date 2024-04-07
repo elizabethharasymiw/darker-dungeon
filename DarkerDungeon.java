@@ -262,6 +262,7 @@ class Menu{
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
+    private enum PlayerLocationStates { ROOM, INTERSECTION, HALLWAY, DEADEND, CORNER }
     private int width;
     private int height;
     private Directions playerFront;
@@ -270,9 +271,8 @@ class Map{
     private ArrayList<ArrayList<Character>> mapGrid;
     private char exitDoor = 'E';
     private char wall = '#';
-    // @TODO: Add more environment descriptions text
-    // private bool nextToWall;
-    // private bool inCorner;
+    private PlayerLocationStates currentPlayerLocationState;
+    private PlayerLocationStates priorPlayerLocationState;
 
     /**
      * @brief Map constructor that requires the maps dimensions
