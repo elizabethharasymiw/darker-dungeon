@@ -163,6 +163,9 @@ class Menu{
         if(myMap.checkExit()){
             printASCIIDoor();
         }
+        else if(myMap.checkPlayerFORWARD() == false){
+            printASCIIWall();
+        }
 
         System.out.println();
 
@@ -259,6 +262,16 @@ class Menu{
         System.out.println(   "    _ /   \\ _");
         System.out.println(   "      \\ _ /");
         System.out.println(   "      /   \\");
+    }
+
+    /**
+     * @brief Function to print an ASCII wall to the screen
+     */
+    public void printASCIIWall(){
+         System.out.println("|___|___|___|___|___|___|___|___");
+         System.out.println("__|___|___|___|___|___|___|___|_");
+         System.out.println("|___|___|___|___|___|___|___|___");
+         System.out.println("__|___|___|___|___|___|___|___|_");
     }
 
     /**
