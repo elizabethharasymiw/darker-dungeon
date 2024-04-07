@@ -202,12 +202,14 @@ class Menu{
                 break;
         }
 
+        // check if the player just got here
         if(myMap.checkExit() && lastPlayerAction == MenuOptions.FORWARD){
-            System.out.println(" You are now standing next to the door.");
+            System.out.println(" You enter a deadend and find a door");
         }
 
+        // check if the player did not move locations
         if(myMap.checkExit() && lastPlayerAction != MenuOptions.FORWARD && lastPlayerAction != MenuOptions.OPENDOOR){
-            System.out.println(" Did you try opening the door?");
+            System.out.println(" A door is nearby");
         }
 
     }
