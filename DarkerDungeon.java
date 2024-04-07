@@ -407,10 +407,88 @@ class Map{
         return  false;
     }
 
-    /*
-     * @TODO
+    /**
+     * @brief Function to update the current players location
+     *        state, and most recent last location state, using
+     *        information from the map around the player.
      */
     public void updatePlayerLocationStates(){
+        priorPlayerLocationState = currentPlayerLocationState;
+
+        int directWallCount = 0;
+        Boolean northWall = false;
+        Boolean westWall = false;
+        Boolean southWall = false;
+        Boolean eastWall = false;
+
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX) != wall){
+            northWall = true;
+            directWallCount++;
+        }
+
+        if(mapGrid.get(currentLocationY).get(currentLocationX - 1) != wall){
+            westWall = true;
+            directWallCount++;
+        }
+
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX) != wall){
+            southWall = true;
+            directWallCount++;
+        }
+
+        if(mapGrid.get(currentLocationY).get(currentLocationX + 1) != wall){
+            eastWall = true;
+            directWallCount++;
+        }
+
+        Boolean adjacentWalls = false;
+        Boolean oppositeWalls = false;
+
+        if(directWallCount == 2){
+            if( (westWall && eastWall) || (northWall && southWall)){
+                oppositeWalls = true;
+            }else{
+                adjacentWalls = true;
+            }
+        }
+
+        int cornerWallCount = 0;
+
+        // Check North West Corner is Wall
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX - 1) != wall){
+            cornerWallCount++;
+        }
+
+        // Check North East Corner is Wall
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX + 1) != wall){
+            cornerWallCount++;
+        }
+
+        // Check South West Corner is Wall
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX - 1) != wall){
+            cornerWallCount++;
+        }
+
+        // Check South East Corner is Wall
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX + 1) != wall){
+            cornerWallCount++;
+        }
+
+        if(directWallCount == 3){
+            currentPlayerLocationState = PlayerLocationStates.DEADEND;
+        }
+        else if(adjacentWalls){
+            currentPlayerLocationState = PlayerLocationStates.CORNER;
+        }
+        else if(oppositeWalls){
+            currentPlayerLocationState = PlayerLocationStates.HALLWAY;
+        }
+        else if( (cornerWallCount == 4) && (directWallCount <= 1) ){
+            currentPlayerLocationState = PlayerLocationStates.HALLWAYINTERSECTION;
+        }
+        else{
+            currentPlayerLocationState = PlayerLocationStates.ROOM;
+        }
     }
 
     /**
