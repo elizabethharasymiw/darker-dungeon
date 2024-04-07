@@ -1,7 +1,7 @@
 # TODO list for version v4.x.x
 - [ ] Add a mini-quest to find a key to open the exit door
 - [X] Modify the map to be more complex, add a hallway and a extra room
-- [ ] Add more description of the environment, like telling the player when they are next to a wall or in a corner
+- [X] Add more description of the environment, like telling the player when they are in a corner, hallway, etc.
 
 # Unplanned feature ideas
 * Hot and Cold mini-game based on what the game wants to get next, the door location or the key's location for example

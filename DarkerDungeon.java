@@ -155,7 +155,6 @@ class Menu{
     }
 
     /**
-     * @TODO Update messages to tell more about the players current location
      * @brief Function to print the current display based on the game state
      * @param lastPlayerAction The last action the player did
      */
@@ -169,24 +168,41 @@ class Menu{
 
         switch(lastPlayerAction){
             case FORWARD:
-                System.out.println(" You decide to walk for a bit.");
+                if(myMap.getCurrentPlayerLocationState() == myMap.getPriorPlayerLocationState()){
+                    System.out.print(" You continue walking in a ");
+                    if(myMap.getCurrentPlayerLocationState() == "corner"){
+                        System.out.print("room");
+                    }
+                    else{
+                        System.out.print(myMap.getCurrentPlayerLocationState());
+                    }
+                }
+                else if(myMap.getPriorPlayerLocationState() == "corner"){
+                    System.out.print(" You continue walking in a room");
+                }
+                else{
+                    System.out.print(" You enter a ");
+                    System.out.print(myMap.getCurrentPlayerLocationState());
+                }
                 break;
             case TURNLEFT:
-                System.out.println(" You decide to turn left.");
+                System.out.print(" You turn left in the ");
+                System.out.print(myMap.getCurrentPlayerLocationState());
                 break;
             case TURNRIGHT:
-                System.out.println(" You decide to turn right.");
+                System.out.print(" You turn right in the ");
+                System.out.print(myMap.getCurrentPlayerLocationState());
                 break;
             case DONOTHING:
                 switch(doNothingCount){
                 case 1:
-                    System.out.println(" So this is how you want to spend your time? Doing nothing?");
+                    System.out.print(" So this is how you want to spend your time? Doing nothing?");
                     break;
                 case 2:
-                    System.out.println(" So you know there a door? You can get out of here.");
+                    System.out.print(" So you know there a door? You can get out of here.");
                     break;
                 case 3:
-                    System.out.println(" Alright, that's enough of that.");
+                    System.out.print(" Alright, that's enough of that.");
                     break;
                 }
                 break;
@@ -203,7 +219,10 @@ class Menu{
 
         // check if the player just got here
         if(myMap.checkExit() && lastPlayerAction == MenuOptions.FORWARD){
-            System.out.println(" You enter a deadend and find a door");
+            System.out.println(" and find a door");
+        }
+        else{
+            System.out.println();
         }
 
         // check if the player did not move locations
