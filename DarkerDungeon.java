@@ -128,6 +128,9 @@ class Menu{
      * @return Boolean state of whether or not the player is still trapped
      */
     public Boolean doPlayerAction(MenuOptions playerAction){
+
+        Boolean trapped = true;
+
         switch(playerAction){
             case FORWARD:
                 myMap.movePlayer();
@@ -142,10 +145,13 @@ class Menu{
                 doNothingCount++;
                 break;
             case OPENDOOR:
-                return false;
+                trapped = false;
+                break;
         }
 
-        return true;
+        myMap.updatePlayerLocationStates();
+
+        return trapped;
     }
 
     /**
