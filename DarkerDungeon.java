@@ -22,8 +22,8 @@ public class main{
 
         myMenu.clearScreen();
         System.out.println();
-        System.out.println(" You wake up to a unfamilar dark room.");
-        System.out.println(" You see the dim outline of a door.");
+        System.out.println(" You wake up to a unfamilar dark room...");
+        System.out.println(" You hear a mysterious voice say \"find the door\"");
 
         while(trapped){
             myMenu.updateMenu();
@@ -128,6 +128,9 @@ class Menu{
      * @return Boolean state of whether or not the player is still trapped
      */
     public Boolean doPlayerAction(MenuOptions playerAction){
+
+        Boolean trapped = true;
+
         switch(playerAction){
             case FORWARD:
                 myMap.movePlayer();
@@ -142,10 +145,13 @@ class Menu{
                 doNothingCount++;
                 break;
             case OPENDOOR:
-                return false;
+                trapped = false;
+                break;
         }
 
-        return true;
+        myMap.updatePlayerLocationStates();
+
+        return trapped;
     }
 
     /**
@@ -155,32 +161,51 @@ class Menu{
     public void printScreen(MenuOptions lastPlayerAction){
 
         if(myMap.checkExit()){
-            clearScreen();
             printASCIIDoor();
+        }
+        else if(myMap.checkPlayerFORWARD() == false){
+            printASCIIWall();
         }
 
         System.out.println();
 
         switch(lastPlayerAction){
             case FORWARD:
-                System.out.println(" You decide to walk for a bit.");
+                if(myMap.getCurrentPlayerLocationState() == myMap.getPriorPlayerLocationState()){
+                    System.out.print(" You continue walking in a ");
+                    if(myMap.getCurrentPlayerLocationState() == "corner"){
+                        System.out.print("room");
+                    }
+                    else{
+                        System.out.print(myMap.getCurrentPlayerLocationState());
+                    }
+                }
+                else if(myMap.getPriorPlayerLocationState() == "corner"){
+                    System.out.print(" You continue walking in a room");
+                }
+                else{
+                    System.out.print(" You enter a ");
+                    System.out.print(myMap.getCurrentPlayerLocationState());
+                }
                 break;
             case TURNLEFT:
-                System.out.println(" You decide to turn left.");
+                System.out.print(" You turn left in the ");
+                System.out.print(myMap.getCurrentPlayerLocationState());
                 break;
             case TURNRIGHT:
-                System.out.println(" You decide to turn right.");
+                System.out.print(" You turn right in the ");
+                System.out.print(myMap.getCurrentPlayerLocationState());
                 break;
             case DONOTHING:
                 switch(doNothingCount){
                 case 1:
-                    System.out.println(" So this is how you want to spend your time? Doing nothing?");
+                    System.out.print(" So this is how you want to spend your time? Doing nothing?");
                     break;
                 case 2:
-                    System.out.println(" So you know there a door? You can get out of here.");
+                    System.out.print(" So you know there a door? You can get out of here.");
                     break;
                 case 3:
-                    System.out.println(" Alright, that's enough of that.");
+                    System.out.print(" Alright, that's enough of that.");
                     break;
                 }
                 break;
@@ -188,19 +213,24 @@ class Menu{
                 clearScreen();
                 System.out.println();
                 printASCIISun();
-                System.out.println("\n You have Escaped!\n");
+                System.out.print("\n You have Escaped!\n");
                 break;
             default:
-                System.out.println(" You can't do that.");
+                System.out.print(" You can't do that.");
                 break;
         }
 
+        // check if the player just got here
         if(myMap.checkExit() && lastPlayerAction == MenuOptions.FORWARD){
-            System.out.println(" You are now standing next to the door.");
+            System.out.println(" and find a door");
+        }
+        else{
+            System.out.println();
         }
 
+        // check if the player did not move locations
         if(myMap.checkExit() && lastPlayerAction != MenuOptions.FORWARD && lastPlayerAction != MenuOptions.OPENDOOR){
-            System.out.println(" Did you try opening the door?");
+            System.out.println(" A door is nearby");
         }
 
     }
@@ -235,6 +265,16 @@ class Menu{
     }
 
     /**
+     * @brief Function to print an ASCII wall to the screen
+     */
+    public void printASCIIWall(){
+         System.out.println("|___|___|___|___|___|___|___|__");
+         System.out.println("__|___|___|___|___|___|___|___|");
+         System.out.println("|___|___|___|___|___|___|___|__");
+         System.out.println("__|___|___|___|___|___|___|___|");
+    }
+
+    /**
      * @brief Function to clear the entire screen, screen being the console
      */
     public void clearScreen() {
@@ -262,6 +302,7 @@ class Menu{
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
+    private enum PlayerLocationStates { ROOM, HALLWAYINTERSECTION, HALLWAY, DEADEND, CORNER }
     private int width;
     private int height;
     private Directions playerFront;
@@ -270,9 +311,8 @@ class Map{
     private ArrayList<ArrayList<Character>> mapGrid;
     private char exitDoor = 'E';
     private char wall = '#';
-    // @TODO: Add more environment descriptions text
-    // private bool nextToWall;
-    // private bool inCorner;
+    private PlayerLocationStates currentPlayerLocationState;
+    private PlayerLocationStates priorPlayerLocationState;
 
     /**
      * @brief Map constructor that requires the maps dimensions
@@ -283,6 +323,8 @@ class Map{
         this.playerFront = Directions.SOUTH;
         this.currentLocationX = 1;
         this.currentLocationY = 1;
+        this.currentPlayerLocationState = PlayerLocationStates.CORNER;
+        this.priorPlayerLocationState = PlayerLocationStates.CORNER;
 
         // starting map, # = wall, E = exit door
         // @NOTE The map must have all edges be walls (#) to not have issues
@@ -371,6 +413,9 @@ class Map{
 
     /**
      * @brief Function to check if the player can move forward
+     * @apiNote If the map does not have walls surrounding all edges
+     *          this could throw an out of bounds error when the player
+     *          is at the edge of the map and facing the edge.
      * @return boolean based on if the player can move forward or not
      */
     public Boolean checkPlayerFORWARD(){
@@ -394,5 +439,133 @@ class Map{
         }
 
         return  false;
+    }
+
+    /**
+     * @brief Function to update the current players location
+     *        state, and most recent last location state, using
+     *        information from the map around the player.
+     */
+    public void updatePlayerLocationStates(){
+        priorPlayerLocationState = currentPlayerLocationState;
+
+        int directWallCount = 0;
+        Boolean northWall = false;
+        Boolean westWall = false;
+        Boolean southWall = false;
+        Boolean eastWall = false;
+
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX) == wall){
+            northWall = true;
+            directWallCount++;
+        }
+
+        if(mapGrid.get(currentLocationY).get(currentLocationX - 1) == wall){
+            westWall = true;
+            directWallCount++;
+        }
+
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX) == wall){
+            southWall = true;
+            directWallCount++;
+        }
+
+        if(mapGrid.get(currentLocationY).get(currentLocationX + 1) == wall){
+            eastWall = true;
+            directWallCount++;
+        }
+
+        Boolean adjacentWalls = false;
+        Boolean oppositeWalls = false;
+
+        if(directWallCount == 2){
+            if( (westWall && eastWall) || (northWall && southWall)){
+                oppositeWalls = true;
+            }else{
+                adjacentWalls = true;
+            }
+        }
+
+        int cornerWallCount = 0;
+
+        // Check North West Corner is Wall
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX - 1) == wall){
+            cornerWallCount++;
+        }
+
+        // Check North East Corner is Wall
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX + 1) == wall){
+            cornerWallCount++;
+        }
+
+        // Check South West Corner is Wall
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX - 1) == wall){
+            cornerWallCount++;
+        }
+
+        // Check South East Corner is Wall
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX + 1) == wall){
+            cornerWallCount++;
+        }
+
+        if(directWallCount == 3){
+            currentPlayerLocationState = PlayerLocationStates.DEADEND;
+        }
+        else if(adjacentWalls){
+            currentPlayerLocationState = PlayerLocationStates.CORNER;
+        }
+        else if(oppositeWalls){
+            currentPlayerLocationState = PlayerLocationStates.HALLWAY;
+        }
+        else if( (cornerWallCount == 4) && (directWallCount <= 1) ){
+            currentPlayerLocationState = PlayerLocationStates.HALLWAYINTERSECTION;
+        }
+        else{
+            currentPlayerLocationState = PlayerLocationStates.ROOM;
+        }
+    }
+
+    /**
+     * @brief Function to return information about the players
+     *        current location state in string form.
+     * @return String that describes the players current location
+     */
+    public String getCurrentPlayerLocationState(){
+        switch(currentPlayerLocationState){
+            case ROOM:
+                return "room";
+            case HALLWAYINTERSECTION:
+                return "hallway intersection";
+            case HALLWAY:
+                return "hallway";
+            case DEADEND:
+                return "dead end";
+            case CORNER:
+                return "corner";
+        }
+
+        return "ERROR_UNKNOWN_CURRENT_PLAYER_LOCATION_STATE";
+    }
+
+    /**
+     * @brief Function to return information about the players
+     *        prior location state in string form.
+     * @return String that describes the players prior location
+     */
+    public String getPriorPlayerLocationState(){
+        switch(priorPlayerLocationState){
+            case ROOM:
+                return "room";
+            case HALLWAYINTERSECTION:
+                return "hallway intersection";
+            case HALLWAY:
+                return "hallway";
+            case DEADEND:
+                return "dead end";
+            case CORNER:
+                return "corner";
+        }
+
+        return "ERROR_UNKNOWN_PRIOR_PLAYER_LOCATION_STATE";
     }
 }
