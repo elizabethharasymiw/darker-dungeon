@@ -291,6 +291,8 @@ class Map{
         this.playerFront = Directions.SOUTH;
         this.currentLocationX = 1;
         this.currentLocationY = 1;
+        this.currentPlayerLocationState = PlayerLocationStates.CORNER;
+        this.priorPlayerLocationState = PlayerLocationStates.CORNER;
 
         // starting map, # = wall, E = exit door
         // @NOTE The map must have all edges be walls (#) to not have issues
