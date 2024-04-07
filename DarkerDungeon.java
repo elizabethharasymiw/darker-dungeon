@@ -398,4 +398,24 @@ class Map{
 
         return  false;
     }
+
+    /*
+     * @TODO
+     */
+    public void updatePlayerLocationStates(){
+    }
+
+    /*
+     * @TODO
+     */
+    public String checkCurrentPlayerLocationState(){
+        return "unknown";
+    }
+
+    /*
+     * @TODO
+     */
+    public String checkPriorPlayerLocationState(){
+        return "unknown";
+    }
 }
