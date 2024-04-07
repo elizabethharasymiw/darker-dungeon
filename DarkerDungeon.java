@@ -423,22 +423,22 @@ class Map{
         Boolean southWall = false;
         Boolean eastWall = false;
 
-        if(mapGrid.get(currentLocationY - 1).get(currentLocationX) != wall){
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX) == wall){
             northWall = true;
             directWallCount++;
         }
 
-        if(mapGrid.get(currentLocationY).get(currentLocationX - 1) != wall){
+        if(mapGrid.get(currentLocationY).get(currentLocationX - 1) == wall){
             westWall = true;
             directWallCount++;
         }
 
-        if(mapGrid.get(currentLocationY + 1).get(currentLocationX) != wall){
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX) == wall){
             southWall = true;
             directWallCount++;
         }
 
-        if(mapGrid.get(currentLocationY).get(currentLocationX + 1) != wall){
+        if(mapGrid.get(currentLocationY).get(currentLocationX + 1) == wall){
             eastWall = true;
             directWallCount++;
         }
@@ -457,22 +457,22 @@ class Map{
         int cornerWallCount = 0;
 
         // Check North West Corner is Wall
-        if(mapGrid.get(currentLocationY - 1).get(currentLocationX - 1) != wall){
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX - 1) == wall){
             cornerWallCount++;
         }
 
         // Check North East Corner is Wall
-        if(mapGrid.get(currentLocationY - 1).get(currentLocationX + 1) != wall){
+        if(mapGrid.get(currentLocationY - 1).get(currentLocationX + 1) == wall){
             cornerWallCount++;
         }
 
         // Check South West Corner is Wall
-        if(mapGrid.get(currentLocationY + 1).get(currentLocationX - 1) != wall){
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX - 1) == wall){
             cornerWallCount++;
         }
 
         // Check South East Corner is Wall
-        if(mapGrid.get(currentLocationY + 1).get(currentLocationX + 1) != wall){
+        if(mapGrid.get(currentLocationY + 1).get(currentLocationX + 1) == wall){
             cornerWallCount++;
         }
 
