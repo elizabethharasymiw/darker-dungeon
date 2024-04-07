@@ -418,7 +418,7 @@ class Map{
      *        current location state in string form.
      * @return String that describes the players current location
      */
-    public String checkCurrentPlayerLocationState(){
+    public String getCurrentPlayerLocationState(){
         switch(currentPlayerLocationState){
             case ROOM:
                 return "room";
@@ -440,7 +440,7 @@ class Map{
      *        prior location state in string form.
      * @return String that describes the players prior location
      */
-    public String checkPriorPlayerLocationState(){
+    public String getPriorPlayerLocationState(){
         switch(priorPlayerLocationState){
             case ROOM:
                 return "room";
