@@ -270,7 +270,7 @@ class Menu{
  */
 class Map{
     private enum Directions { NORTH, EAST, SOUTH, WEST }
-    private enum PlayerLocationStates { ROOM, INTERSECTION, HALLWAY, DEADEND, CORNER }
+    private enum PlayerLocationStates { ROOM, HALLWAYINTERSECTION, HALLWAY, DEADEND, CORNER }
     private int width;
     private int height;
     private Directions playerFront;
@@ -413,17 +413,47 @@ class Map{
     public void updatePlayerLocationStates(){
     }
 
-    /*
-     * @TODO
+    /**
+     * @brief Function to return information about the players
+     *        current location state in string form.
+     * @return String that describes the players current location
      */
     public String checkCurrentPlayerLocationState(){
-        return "unknown";
+        switch(currentPlayerLocationState){
+            case ROOM:
+                return "room";
+            case HALLWAYINTERSECTION:
+                return "hallway intersection";
+            case HALLWAY:
+                return "hallway";
+            case DEADEND:
+                return "deadend";
+            case CORNER:
+                return "corner";
+        }
+
+        return "ERROR_UNKNOWN_CURRENT_PLAYER_LOCATION_STATE";
     }
 
-    /*
-     * @TODO
+    /**
+     * @brief Function to return information about the players
+     *        prior location state in string form.
+     * @return String that describes the players prior location
      */
     public String checkPriorPlayerLocationState(){
-        return "unknown";
+        switch(priorPlayerLocationState){
+            case ROOM:
+                return "room";
+            case HALLWAYINTERSECTION:
+                return "hallway intersection";
+            case HALLWAY:
+                return "hallway";
+            case DEADEND:
+                return "deadend";
+            case CORNER:
+                return "corner";
+        }
+
+        return "ERROR_UNKNOWN_PRIOR_PLAYER_LOCATION_STATE";
     }
 }
