@@ -162,7 +162,6 @@ class Menu{
     public void printScreen(MenuOptions lastPlayerAction){
 
         if(myMap.checkExit()){
-            clearScreen();
             printASCIIDoor();
         }
 
