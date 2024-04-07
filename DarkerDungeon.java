@@ -268,10 +268,11 @@ class Menu{
      * @brief Function to print an ASCII wall to the screen
      */
     public void printASCIIWall(){
-         System.out.println("|___|___|___|___|___|___|___|__");
-         System.out.println("__|___|___|___|___|___|___|___|");
-         System.out.println("|___|___|___|___|___|___|___|__");
-         System.out.println("__|___|___|___|___|___|___|___|");
+         System.out.println("  _____________________________ ");
+         System.out.println(" |___|___|___|___|___|___|___|_|");
+         System.out.println(" |_|___|___|___|___|___|___|___|");
+         System.out.println(" |___|___|___|___|___|___|___|_|");
+         System.out.println(" |_|___|___|___|___|___|___|___|");
     }
 
     /**
