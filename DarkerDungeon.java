@@ -371,6 +371,9 @@ class Map{
 
     /**
      * @brief Function to check if the player can move forward
+     * @apiNote If the map does not have walls surrounding all edges
+     *          this could throw an out of bounds error when the player
+     *          is at the edge of the map and facing the edge.
      * @return boolean based on if the player can move forward or not
      */
     public Boolean checkPlayerFORWARD(){
