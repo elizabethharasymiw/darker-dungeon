@@ -22,8 +22,8 @@ public class main{
 
         myMenu.clearScreen();
         System.out.println();
-        System.out.println(" You wake up to a unfamilar dark room.");
-        System.out.println(" You see the dim outline of a door.");
+        System.out.println(" You wake up to a unfamilar dark room...");
+        System.out.println(" You hear a mysterious voice say \"find the door\"");
 
         while(trapped){
             myMenu.updateMenu();
