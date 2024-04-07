@@ -539,7 +539,7 @@ class Map{
             case HALLWAY:
                 return "hallway";
             case DEADEND:
-                return "deadend";
+                return "dead end";
             case CORNER:
                 return "corner";
         }
@@ -561,7 +561,7 @@ class Map{
             case HALLWAY:
                 return "hallway";
             case DEADEND:
-                return "deadend";
+                return "dead end";
             case CORNER:
                 return "corner";
         }
