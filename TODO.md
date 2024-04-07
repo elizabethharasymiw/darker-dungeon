@@ -6,3 +6,4 @@
 # Unplanned feature ideas
 * Hot and Cold mini-game based on what the game wants to get next, the door location or the key's location for example
 * Add other objects or interactions for the player to find if they ignore the main escape quest
+* Remove the need for the player to press "enter" for each option and do the options in response to a keypress instead.
