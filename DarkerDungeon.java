@@ -22,6 +22,9 @@ public class main{
 
         myMenu.clearScreen();
         System.out.println();
+        myMenu.printASCIIkey();
+
+        System.out.println();
         System.out.println(" You wake up to a unfamilar dark room...");
         System.out.println(" You hear a mysterious voice say \"find the door\"");
 
@@ -160,6 +163,9 @@ class Menu{
      */
     public void printScreen(MenuOptions lastPlayerAction){
 
+        System.out.println();
+        printASCIIkey();
+
         if(myMap.checkExit()){
             printASCIIDoor();
         }
@@ -243,6 +249,16 @@ class Menu{
         unlockedOptions.set(MenuOptions.FORWARD.ordinal(), myMap.checkPlayerFORWARD());
         unlockedOptions.set(MenuOptions.DONOTHING.ordinal(), doNothingCheck());
     }
+
+    /**
+     * @TODO
+     * @brief Function to print an ASCII key to the screen
+     */
+    public void printASCIIkey(){
+        //String key = " ◯─┬┐ █________________________";
+        String key = " ◯─┬┐ █████████████████████████";
+        System.out.println( key );
+    };
 
     /**
      * @brief Function to print an ASCII door to the screen
