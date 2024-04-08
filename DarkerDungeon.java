@@ -257,13 +257,24 @@ class Menu{
     }
 
     /**
-     * @TODO
-     * @brief Function to print an ASCII key to the screen
+     * @brief Function to print an ASCII key and progress bar to the screen
      */
     public void printASCIIkey(){
-        //String key = " ◯─┬┐ █________________________";
-        String key = " ◯─┬┐ █████████████████████████";
-        System.out.println( key );
+        int barLength = progress_bar_length / startingPlayerExitDistance;
+        int remaining = 0 + (barLength * currentPlayerExitDistance);
+        int progress = progress_bar_length - (barLength * currentPlayerExitDistance);
+
+        System.out.print( " ◯─┬┐ " );
+
+        for(int i = 0; i < progress; i++){
+            System.out.print("█");
+        }
+
+        for(int i = 0; i < remaining; i++){
+            System.out.print("_");
+        }
+
+        System.out.println();
     };
 
     /**
