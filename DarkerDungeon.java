@@ -50,6 +50,9 @@ class Menu{
     ArrayList<Boolean> unlockedOptions;
     private Map myMap;
     int doNothingCount;
+    int progress_bar_length = 25;
+    int startingPlayerExitDistance;
+    int currentPlayerExitDistance;
 
     /**
      * @brief Menu constructor that requires a starting map
@@ -59,6 +62,8 @@ class Menu{
         this.unlockedOptions = new ArrayList<>(Collections.nCopies(Menu.MenuOptions.END.ordinal(), true));
         this.myMap = myMap;
         this.doNothingCount = 0;
+        this.startingPlayerExitDistance = myMap.getShortestDistanceExit();
+        this.currentPlayerExitDistance = myMap.getShortestDistanceExit();
     }
 
     /**
@@ -153,6 +158,7 @@ class Menu{
         }
 
         myMap.updatePlayerLocationStates();
+        currentPlayerExitDistance = myMap.getShortestDistanceExit();
 
         return trapped;
     }
@@ -584,5 +590,21 @@ class Map{
         }
 
         return "ERROR_UNKNOWN_PRIOR_PLAYER_LOCATION_STATE";
+    }
+
+    /**
+     * @TODO
+     * @brief Function to get the shortest path to exit, based
+     *        on counting required forward moves needed.
+     * @return int that is the shortest number of forward moves
+     *         needed to reach the exit.
+     */
+    public int getShortestDistanceExit(){
+        //currentLocationX;
+        //currentLocationY;
+        //mapGrid;
+        //exitDoor = 'E';
+        //wall = '#';
+        return 5;
     }
 }
