@@ -1,6 +1,6 @@
 /**
  * @file DarkerDungeon.java
- * @brief Java Monofile Game Coding Challenge
+ * @brief Java Game Coding Challenge
  * @author Elizabeth Harasymiw
  */
 
