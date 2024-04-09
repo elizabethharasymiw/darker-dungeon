@@ -8,7 +8,8 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
-
+//import java.util.LinkedList;
+//import java.util.Queue;
 
 /**
  * @brief Main class of the program, contains high level program structure
@@ -623,6 +624,62 @@ class Map{
         ));
 
         return progress.get(currentLocationY).get(currentLocationX);
+        
+                /*
+        int moveCount = 0;
+        int rows = height + 1;
+        int columns = width + 2;
+        ArrayList<ArrayList<Boolean>> visited = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            ArrayList<Boolean> row = new ArrayList<>(Collections.nCopies(columns, false));
+            visited.add(row);
+        }
+        Queue<ArrayList<Integer>> queue = new LinkedList<>();
 
+        visited.get(currentLocationY).set(currentLocationX, true);
+        queue.add(new ArrayList<>(Arrays.asList(currentLocationX, currentLocationY, 0)));
+
+        for(int i = 1; queue.isEmpty() == false; i++){
+
+            ArrayList<Integer> node = queue.remove();
+
+            if(mapGrid.get(node.get(1)).get(node.get(0)) == exitDoor){
+                return node.get(2);
+            }
+
+            // Check if North of current node is visited
+            if((visited.get(node.get(1) - 1).get(node.get(0)) == false)
+               && (mapGrid.get(node.get(1) - 1).get(node.get(0)) != wall)){
+                queue.add(new ArrayList<>(Arrays.asList(node.get(0), node.get(1) - 1, i)));
+                visited.get(node.get(1) - 1).set(node.get(0), true);
+            }
+
+            // Check if West of current node is visited
+            if((visited.get(node.get(1)).get(node.get(0) - 1) == false)
+               && (mapGrid.get(node.get(1)).get(node.get(0) - 1) != wall)){
+                queue.add(new ArrayList<>(Arrays.asList(node.get(0) - 1, node.get(1), i)));
+                visited.get(node.get(1)).set(node.get(0) - 1, true);
+            }
+
+            // Check if East of current node is visited
+            if((visited.get(node.get(1)).get(node.get(0) + 1) == false)
+               && (mapGrid.get(node.get(1)).get(node.get(0) + 1) != wall)){
+                queue.add(new ArrayList<>(Arrays.asList(node.get(0) + 1, node.get(1), i)));
+                visited.get(node.get(1)).set(node.get(0) + 1, true);
+            }
+
+            // Check if South of current node is visited
+            if((visited.get(node.get(1) + 1).get(node.get(0)) == false)
+               && (mapGrid.get(node.get(1) + 1).get(node.get(0)) != wall)){
+                queue.add(new ArrayList<>(Arrays.asList(node.get(0), node.get(1) + 1, i)));
+                visited.get(node.get(1) + 1).set(node.get(0), true);
+            }
+
+            //moveCount++;
+        }
+
+        //return moveCount;
+        return 99; // error not able to find exit
+        */
     }
 }
