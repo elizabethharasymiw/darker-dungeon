@@ -311,6 +311,10 @@ class Menu{
 
     /**
      * @brief Function to clear the entire screen, screen being the console
+     *
+     *        \033 is the start of an ansi code
+     *        [H Move cursor to the beginning
+     *        [2J Clear everything from this point
      */
     public void clearScreen() {
         System.out.print("\033[H\033[2J");
