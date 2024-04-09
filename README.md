@@ -8,5 +8,4 @@ A text only dungeon game. Can you escape?
 
 ## Programming Challenge Rules
 - Written in Java
-- Contain source code to one file
 - Text only game in the command line

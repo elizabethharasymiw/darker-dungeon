@@ -1,6 +1,6 @@
 /**
  * @file DarkerDungeon.java
- * @brief Java Monofile Game Coding Challenge
+ * @brief Java Game Coding Challenge
  * @author Elizabeth Harasymiw
  */
 
@@ -22,8 +22,12 @@ public class main{
 
         myMenu.clearScreen();
         System.out.println();
-        System.out.println(" You wake up to a unfamilar dark room...");
-        System.out.println(" You hear a mysterious voice say \"find the door\"");
+        myMenu.printASCIIkey();
+
+        System.out.println();
+        System.out.println(" You wake up to an unfamilar dark room...");
+        System.out.println(" You find a dimly lit glowing key in your hand.");
+        System.out.println(" You hear a mysterious voice say \"find the door\".");
 
         while(trapped){
             myMenu.updateMenu();
@@ -47,6 +51,9 @@ class Menu{
     ArrayList<Boolean> unlockedOptions;
     private Map myMap;
     int doNothingCount;
+    int progress_bar_length = 25;
+    int startingPlayerExitDistance;
+    int currentPlayerExitDistance;
 
     /**
      * @brief Menu constructor that requires a starting map
@@ -56,6 +63,8 @@ class Menu{
         this.unlockedOptions = new ArrayList<>(Collections.nCopies(Menu.MenuOptions.END.ordinal(), true));
         this.myMap = myMap;
         this.doNothingCount = 0;
+        this.startingPlayerExitDistance = myMap.getShortestDistanceExit();
+        this.currentPlayerExitDistance = myMap.getShortestDistanceExit();
     }
 
     /**
@@ -64,7 +73,7 @@ class Menu{
     public void printMenu(){
 
         System.out.println();
-        System.out.println(" " + "What would you like todo?");
+        System.out.println(" " + "What would you like to do?");
 
         for(int i = 0; i < Menu.MenuOptions.END.ordinal(); i++){
             MenuOptions index = MenuOptions.values()[i];
@@ -150,6 +159,7 @@ class Menu{
         }
 
         myMap.updatePlayerLocationStates();
+        currentPlayerExitDistance = myMap.getShortestDistanceExit();
 
         return trapped;
     }
@@ -159,6 +169,9 @@ class Menu{
      * @param lastPlayerAction The last action the player did
      */
     public void printScreen(MenuOptions lastPlayerAction){
+
+        System.out.println();
+        printASCIIkey();
 
         if(myMap.checkExit()){
             printASCIIDoor();
@@ -202,7 +215,7 @@ class Menu{
                     System.out.print(" So this is how you want to spend your time?");
                     break;
                 case 2:
-                    System.out.print(" So you know there a door?");
+                    System.out.print(" You know there is a door?");
                     break;
                 case 3:
                     System.out.print(" Alright, that's enough of that.");
@@ -245,13 +258,34 @@ class Menu{
     }
 
     /**
+     * @brief Function to print an ASCII key and progress bar to the screen
+     */
+    public void printASCIIkey(){
+        int barLength = progress_bar_length / startingPlayerExitDistance;
+        int remaining = 0 + (barLength * currentPlayerExitDistance);
+        int progress = progress_bar_length - (barLength * currentPlayerExitDistance);
+
+        System.out.print( " ◯─┬┐ " );
+
+        for(int i = 0; i < progress; i++){
+            System.out.print("█");
+        }
+
+        for(int i = 0; i < remaining; i++){
+            System.out.print("_");
+        }
+
+        System.out.println();
+    };
+
+    /**
      * @brief Function to print an ASCII door to the screen
      */
     public void printASCIIDoor(){
-        System.out.println("        ___");
-        System.out.println("       |   |");
-        System.out.println("       |  o|");
-        System.out.println("       |___|");
+        System.out.println("              ___");
+        System.out.println("             |   |");
+        System.out.println("             |  o|");
+        System.out.println("             |___|");
     }
 
     /**
@@ -277,6 +311,10 @@ class Menu{
 
     /**
      * @brief Function to clear the entire screen, screen being the console
+     *
+     *        \033 is the start of an ansi code
+     *        [H Move cursor to the beginning
+     *        [2J Clear everything from this point
      */
     public void clearScreen() {
         System.out.print("\033[H\033[2J");
@@ -568,5 +606,23 @@ class Map{
         }
 
         return "ERROR_UNKNOWN_PRIOR_PLAYER_LOCATION_STATE";
+    }
+
+    /**
+     * @brief Function to get the shortest path to exit, based
+     *        on counting required forward moves needed.
+     * @return int that is the shortest number of forward moves
+     *         needed to reach the exit.
+     */
+    public int getShortestDistanceExit(){
+        ArrayList<ArrayList<Integer>> progress = new ArrayList<>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(9, 9, 9, 9, 9, 9, 9)),
+            new ArrayList<>(Arrays.asList(9, 5, 4, 9, 2, 9, 9)),
+            new ArrayList<>(Arrays.asList(9, 4, 3, 2, 1, 0, 9)),
+            new ArrayList<>(Arrays.asList(9, 9, 9, 9, 9, 9, 9))
+        ));
+
+        return progress.get(currentLocationY).get(currentLocationX);
+
     }
 }
