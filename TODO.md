@@ -10,3 +10,4 @@
 * Change controls to either arrow keys or WASD.
 * Refactor code base to have all classes in separate files
 * Rename Menu class to something about game state, then pull out Menu specific functionality into its own class again.
+* Refactor getShortestDistanceExit function to BFS solution instead of hard coding it.
