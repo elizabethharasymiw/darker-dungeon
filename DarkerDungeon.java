@@ -215,7 +215,7 @@ class Menu{
                     System.out.print(" So this is how you want to spend your time?");
                     break;
                 case 2:
-                    System.out.print(" So you know there is a door?");
+                    System.out.print(" You know there is a door?");
                     break;
                 case 3:
                     System.out.print(" Alright, that's enough of that.");
