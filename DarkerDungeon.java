@@ -609,7 +609,6 @@ class Map{
     }
 
     /**
-     * @TODO
      * @brief Function to get the shortest path to exit, based
      *        on counting required forward moves needed.
      * @return int that is the shortest number of forward moves
