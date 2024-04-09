@@ -25,8 +25,9 @@ public class main{
         myMenu.printASCIIkey();
 
         System.out.println();
-        System.out.println(" You wake up to a unfamilar dark room...");
-        System.out.println(" You hear a mysterious voice say \"find the door\"");
+        System.out.println(" You wake up to an unfamilar dark room...");
+        System.out.println(" You find a dimly lit glowing key in your hand.");
+        System.out.println(" You hear a mysterious voice say \"find the door\".");
 
         while(trapped){
             myMenu.updateMenu();
@@ -72,7 +73,7 @@ class Menu{
     public void printMenu(){
 
         System.out.println();
-        System.out.println(" " + "What would you like todo?");
+        System.out.println(" " + "What would you like to do?");
 
         for(int i = 0; i < Menu.MenuOptions.END.ordinal(); i++){
             MenuOptions index = MenuOptions.values()[i];
@@ -214,7 +215,7 @@ class Menu{
                     System.out.print(" So this is how you want to spend your time?");
                     break;
                 case 2:
-                    System.out.print(" So you know there a door?");
+                    System.out.print(" So you know there is a door?");
                     break;
                 case 3:
                     System.out.print(" Alright, that's enough of that.");
@@ -281,10 +282,10 @@ class Menu{
      * @brief Function to print an ASCII door to the screen
      */
     public void printASCIIDoor(){
-        System.out.println("        ___");
-        System.out.println("       |   |");
-        System.out.println("       |  o|");
-        System.out.println("       |___|");
+        System.out.println("              ___");
+        System.out.println("             |   |");
+        System.out.println("             |  o|");
+        System.out.println("             |___|");
     }
 
     /**
