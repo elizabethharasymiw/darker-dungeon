@@ -2,6 +2,7 @@
 - [ ] Refactor code base to have all classes in separate files
 - [ ] Refactor getShortestDistanceExit function to BFS solution instead of hard coding it.
 - [ ] Rename Menu class to something about game state, then pull out Menu specific functionality into its own class again.
+- [ ] Refactor all ArrayLists to Arrays where I do not need dynamic resizing
 
 # Unplanned feature and TODO items
 * Add other objects or interactions for the player to find if they ignore the main escape quest.
