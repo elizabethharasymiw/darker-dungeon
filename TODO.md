@@ -8,3 +8,5 @@
 * Remove the need for the player to press "enter" for each option and do the options in response to a keypress instead.
 * Add a mini-quest to find a second key to open the exit door.
 * Change controls to either arrow keys or WASD.
+* Refactor code base to have all classes in separate files
+* Rename Menu class to something about game state, then pull out Menu specific functionality into its own class again.
