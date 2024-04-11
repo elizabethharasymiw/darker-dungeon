@@ -292,14 +292,14 @@ public class Map{
      *         needed to reach the exit.
      */
     public int getShortestDistanceExit(){
-        ArrayList<ArrayList<Integer>> progress = new ArrayList<>(Arrays.asList(
-            new ArrayList<>(Arrays.asList(9, 9, 9, 9, 9, 9, 9)),
-            new ArrayList<>(Arrays.asList(9, 5, 4, 9, 2, 9, 9)),
-            new ArrayList<>(Arrays.asList(9, 4, 3, 2, 1, 0, 9)),
-            new ArrayList<>(Arrays.asList(9, 9, 9, 9, 9, 9, 9))
-        ));
+        int[][] progress = {
+            { 9, 9, 9, 9, 9, 9, 9 },
+            { 9, 5, 4, 9, 2, 9, 9 },
+            { 9, 4, 3, 2, 1, 0, 9 },
+            { 9, 9, 9, 9, 9, 9, 9 }
+        };
 
-        return progress.get(currentLocationY).get(currentLocationX);
+        return progress[currentLocationY][currentLocationX];
 
     }
 }
