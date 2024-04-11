@@ -1,5 +1,5 @@
 # TODO list for version v4.0.1
-- [ ] Refactor code base to have all classes in separate files
+- [X] Refactor code base to have all classes in separate files
 - [ ] Refactor getShortestDistanceExit function to BFS solution instead of hard coding it.
 - [ ] Rename Menu class to something about game state, then pull out Menu specific functionality into its own class again.
 - [ ] Refactor all ArrayLists to Arrays where I do not need dynamic resizing.
