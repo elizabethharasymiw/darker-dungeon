@@ -3,8 +3,8 @@ A text only dungeon game. Can you escape?
 
 ## How to play
 - Download Java JDK
-- Download DarkerDungeon.java from this repository
-- Run the program using java: ``` java DarkerDungeon.java ```
+- Download this repository
+- Run this command from the root dir: ``` make run ```
 
 ## Programming Challenge Rules
 - Written in Java
