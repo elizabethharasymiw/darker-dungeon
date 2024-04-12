@@ -16,7 +16,7 @@ import java.util.Collections;
  */
 public class Menu{
     public enum MenuOptions { ZERO, DONOTHING, FORWARD, TURNLEFT, TURNRIGHT, OPENDOOR, END}
-    ArrayList<Boolean> unlockedOptions;
+    boolean[] unlockedOptions;
     private Map myMap;
     int doNothingCount;
     int progress_bar_length = 25;
@@ -28,7 +28,8 @@ public class Menu{
      * @param myMap Starting map
      */
     public Menu(Map myMap){
-        this.unlockedOptions = new ArrayList<>(Collections.nCopies(Menu.MenuOptions.END.ordinal(), true));
+        this.unlockedOptions = new boolean[Menu.MenuOptions.END.ordinal()];
+        Arrays.fill(unlockedOptions, true);
         this.myMap = myMap;
         this.doNothingCount = 0;
         this.startingPlayerExitDistance = myMap.getShortestDistanceExit();
@@ -45,7 +46,7 @@ public class Menu{
 
         for(int i = 0; i < Menu.MenuOptions.END.ordinal(); i++){
             MenuOptions index = MenuOptions.values()[i];
-            if(unlockedOptions.get(i)){
+            if(unlockedOptions[i]){
                 switch(index){
                     case DONOTHING:
                         System.out.println(" " + MenuOptions.DONOTHING.ordinal() + ": Do Nothing");
@@ -92,7 +93,7 @@ public class Menu{
             playerAction = MenuOptions.values()[userNumber];
         }
 
-        if(unlockedOptions.get(playerAction.ordinal()) == false){
+        if(unlockedOptions[playerAction.ordinal()] == false){
             playerAction = MenuOptions.ZERO;
         }
 
@@ -220,9 +221,9 @@ public class Menu{
      * @brief Function to update what options the user has avaiable to them
      */
     public void updateMenu(){
-        unlockedOptions.set(MenuOptions.OPENDOOR.ordinal(), myMap.checkExit());
-        unlockedOptions.set(MenuOptions.FORWARD.ordinal(), myMap.checkPlayerFORWARD());
-        unlockedOptions.set(MenuOptions.DONOTHING.ordinal(), doNothingCheck());
+        unlockedOptions[MenuOptions.OPENDOOR.ordinal()] = myMap.checkExit();
+        unlockedOptions[MenuOptions.FORWARD.ordinal()] = myMap.checkPlayerFORWARD();
+        unlockedOptions[MenuOptions.DONOTHING.ordinal()] = doNothingCheck();
     }
 
     /**
