@@ -9,9 +9,6 @@ package com.mypackage;
 import com.mypackage.Map;
 import com.mypackage.Menu;
 import java.util.Scanner;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * @brief Main class of the program, contains high level program structure

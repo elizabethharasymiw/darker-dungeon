@@ -5,11 +5,6 @@
 
 package com.mypackage;
 
-import java.util.Scanner;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Collections;
-
 /**
  * @brief Map Class that holds state information about player and environment
  * @apiNote The map is draw from the upper left to lower right, so upper left
@@ -24,7 +19,7 @@ public class Map{
     private Directions playerFront;
     private int currentLocationX;
     private int currentLocationY;
-    private ArrayList<ArrayList<Character>> mapGrid;
+    private char[][] mapGrid;
     private char exitDoor = 'E';
     private char wall = '#';
     private PlayerLocationStates currentPlayerLocationState;
@@ -45,12 +40,12 @@ public class Map{
         // starting map, # = wall, E = exit door
         // @NOTE The map must have all edges be walls (#) to not have issues
         //       checking the player's future forward moves
-        this.mapGrid = new ArrayList<>(Arrays.asList(
-            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#', '#')),
-            new ArrayList<>(Arrays.asList('#', ' ', ' ', '#', ' ', '#', '#')),
-            new ArrayList<>(Arrays.asList('#', ' ', ' ', ' ', ' ', 'E', '#')),
-            new ArrayList<>(Arrays.asList('#', '#', '#', '#', '#', '#', '#'))
-        ));
+        this.mapGrid =  new char[][] {
+            { '#', '#', '#', '#', '#', '#', '#' },
+            { '#', ' ', ' ', '#', ' ', '#', '#' },
+            { '#', ' ', ' ', ' ', ' ', 'E', '#' },
+            { '#', '#', '#', '#', '#', '#', '#' }
+        };
     }
 
     /**
@@ -121,7 +116,7 @@ public class Map{
      * @return boolean based on if the player is or is not at the exit door
      */
     public Boolean checkExit(){
-        if(mapGrid.get(currentLocationY).get(currentLocationX) == exitDoor){
+        if(mapGrid[currentLocationY][currentLocationX] == exitDoor){
             return true;
         }
         return false;
@@ -137,19 +132,19 @@ public class Map{
     public Boolean checkPlayerFORWARD(){
         switch (playerFront){
             case NORTH:
-                if(mapGrid.get(currentLocationY - 1).get(currentLocationX) != wall)
+                if(mapGrid[currentLocationY - 1][currentLocationX] != wall)
                     return true;
                 break;
             case WEST:
-                if(mapGrid.get(currentLocationY).get(currentLocationX - 1) != wall)
+                if(mapGrid[currentLocationY][currentLocationX - 1] != wall)
                     return true;
                 break;
             case SOUTH:
-                if(mapGrid.get(currentLocationY + 1).get(currentLocationX) != wall)
+                if(mapGrid[currentLocationY + 1][currentLocationX] != wall)
                     return true;
                 break;
             case EAST:
-                if(mapGrid.get(currentLocationY).get(currentLocationX + 1) != wall)
+                if(mapGrid[currentLocationY][currentLocationX + 1] != wall)
                     return true;
                 break;
         }
@@ -171,22 +166,22 @@ public class Map{
         Boolean southWall = false;
         Boolean eastWall = false;
 
-        if(mapGrid.get(currentLocationY - 1).get(currentLocationX) == wall){
+        if(mapGrid[currentLocationY - 1][currentLocationX] == wall){
             northWall = true;
             directWallCount++;
         }
 
-        if(mapGrid.get(currentLocationY).get(currentLocationX - 1) == wall){
+        if(mapGrid[currentLocationY][currentLocationX - 1] == wall){
             westWall = true;
             directWallCount++;
         }
 
-        if(mapGrid.get(currentLocationY + 1).get(currentLocationX) == wall){
+        if(mapGrid[currentLocationY + 1][currentLocationX] == wall){
             southWall = true;
             directWallCount++;
         }
 
-        if(mapGrid.get(currentLocationY).get(currentLocationX + 1) == wall){
+        if(mapGrid[currentLocationY][currentLocationX + 1] == wall){
             eastWall = true;
             directWallCount++;
         }
@@ -205,22 +200,22 @@ public class Map{
         int cornerWallCount = 0;
 
         // Check North West Corner is Wall
-        if(mapGrid.get(currentLocationY - 1).get(currentLocationX - 1) == wall){
+        if(mapGrid[currentLocationY - 1][currentLocationX - 1] == wall){
             cornerWallCount++;
         }
 
         // Check North East Corner is Wall
-        if(mapGrid.get(currentLocationY - 1).get(currentLocationX + 1) == wall){
+        if(mapGrid[currentLocationY - 1][currentLocationX + 1] == wall){
             cornerWallCount++;
         }
 
         // Check South West Corner is Wall
-        if(mapGrid.get(currentLocationY + 1).get(currentLocationX - 1) == wall){
+        if(mapGrid[currentLocationY + 1][currentLocationX - 1] == wall){
             cornerWallCount++;
         }
 
         // Check South East Corner is Wall
-        if(mapGrid.get(currentLocationY + 1).get(currentLocationX + 1) == wall){
+        if(mapGrid[currentLocationY + 1][currentLocationX + 1] == wall){
             cornerWallCount++;
         }
 
