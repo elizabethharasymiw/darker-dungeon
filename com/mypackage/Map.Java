@@ -5,11 +5,6 @@
 
 package com.mypackage;
 
-import java.util.Scanner;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Collections;
-
 /**
  * @brief Map Class that holds state information about player and environment
  * @apiNote The map is draw from the upper left to lower right, so upper left
