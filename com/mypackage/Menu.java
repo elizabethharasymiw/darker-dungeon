@@ -6,10 +6,7 @@
 package com.mypackage;
 
 import com.mypackage.Map;
-import java.util.Scanner;
 import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * @brief Menu class that holds game state information about the program
