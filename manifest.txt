@@ -1,0 +1,2 @@
+Manifest-Version: 4.0
+Main-Class: com.mypackage.DarkerDungeon
