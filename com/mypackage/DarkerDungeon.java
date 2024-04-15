@@ -14,13 +14,13 @@ import java.util.Scanner;
  */
 public class DarkerDungeon{
     public static void main(String[] args){
-        GameState myMenu = new GameState();
+        GameState myGame = new GameState();
         Scanner scanner = new Scanner(System.in);
         Boolean trapped = true;
 
-        myMenu.clearScreen();
+        myGame.clearScreen();
         System.out.println();
-        myMenu.printASCIIkey();
+        myGame.printASCIIkey();
 
         System.out.println();
         System.out.println(" You wake up to an unfamilar dark room...");
@@ -28,13 +28,13 @@ public class DarkerDungeon{
         System.out.println(" You hear a mysterious voice say \"find the door\".");
 
         while(trapped){
-            myMenu.updateMenu();
-            myMenu.printMenu();
+            myGame.updateMenu();
+            myGame.printMenu();
             String userRawInput = scanner.nextLine();
-            GameState.MenuOptions playerAction = myMenu.parseUserInput(userRawInput);
-            myMenu.clearScreen();
-            trapped = myMenu.doPlayerAction(playerAction);
-            myMenu.printScreen(playerAction);
+            GameState.MenuOptions playerAction = myGame.parseUserInput(userRawInput);
+            myGame.clearScreen();
+            trapped = myGame.doPlayerAction(playerAction);
+            myGame.printScreen(playerAction);
         }
 
         scanner.close();
