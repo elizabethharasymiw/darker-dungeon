@@ -6,7 +6,6 @@
 
 package com.mypackage;
 
-import com.mypackage.Map;
 import com.mypackage.GameState;
 import java.util.Scanner;
 
@@ -15,8 +14,7 @@ import java.util.Scanner;
  */
 public class DarkerDungeon{
     public static void main(String[] args){
-        Map myMap = new Map();
-        GameState myMenu = new GameState(myMap);
+        GameState myMenu = new GameState();
         Scanner scanner = new Scanner(System.in);
         Boolean trapped = true;
 

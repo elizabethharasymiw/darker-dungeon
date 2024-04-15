@@ -24,10 +24,10 @@ public class GameState{
      * @brief GameState constructor that requires a starting map
      * @param myMap Starting map
      */
-    public GameState(Map myMap){
+    public GameState(){
         this.unlockedOptions = new boolean[GameState.MenuOptions.END.ordinal()];
         Arrays.fill(unlockedOptions, true);
-        this.myMap = myMap;
+        this.myMap = new Map();
         this.doNothingCount = 0;
         this.startingPlayerExitDistance = myMap.getShortestDistanceExit();
         this.currentPlayerExitDistance = myMap.getShortestDistanceExit();
