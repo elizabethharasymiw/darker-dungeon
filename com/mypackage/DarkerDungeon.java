@@ -18,14 +18,7 @@ public class DarkerDungeon{
         Scanner scanner = new Scanner(System.in);
         Boolean trapped = true;
 
-        myGame.clearScreen();
-        System.out.println();
-        myGame.printASCIIkey();
-
-        System.out.println();
-        System.out.println(" You wake up to an unfamilar dark room...");
-        System.out.println(" You find a dimly lit glowing key in your hand.");
-        System.out.println(" You hear a mysterious voice say \"find the door\".");
+        myGame.printStartMessage();
 
         while(trapped){
             myGame.updateMenu();

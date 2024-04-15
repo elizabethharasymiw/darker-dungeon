@@ -34,6 +34,20 @@ public class GameState{
     }
 
     /**
+     * @brief Function to print the starting Game message
+     */
+    public void printStartMessage(){
+        clearScreen();
+        System.out.println();
+        printASCIIkey();
+
+        System.out.println();
+        System.out.println(" You wake up to an unfamilar dark room...");
+        System.out.println(" You find a dimly lit glowing key in your hand.");
+        System.out.println(" You hear a mysterious voice say \"find the door\".");
+    }
+
+    /**
      * @brief Function to print out the current available player options
      */
     public void printMenu(){
