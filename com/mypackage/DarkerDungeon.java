@@ -7,7 +7,7 @@
 package com.mypackage;
 
 import com.mypackage.Map;
-import com.mypackage.Menu;
+import com.mypackage.GameState;
 import java.util.Scanner;
 
 /**
@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class DarkerDungeon{
     public static void main(String[] args){
         Map myMap = new Map();
-        Menu myMenu = new Menu(myMap);
+        GameState myMenu = new GameState(myMap);
         Scanner scanner = new Scanner(System.in);
         Boolean trapped = true;
 
@@ -33,7 +33,7 @@ public class DarkerDungeon{
             myMenu.updateMenu();
             myMenu.printMenu();
             String userRawInput = scanner.nextLine();
-            Menu.MenuOptions playerAction = myMenu.parseUserInput(userRawInput);
+            GameState.MenuOptions playerAction = myMenu.parseUserInput(userRawInput);
             myMenu.clearScreen();
             trapped = myMenu.doPlayerAction(playerAction);
             myMenu.printScreen(playerAction);

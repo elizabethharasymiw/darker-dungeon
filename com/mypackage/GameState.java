@@ -1,5 +1,5 @@
 /**
- * @file Menu.java
+ * @file GameState.java
  * @author Elizabeth Harasymiw
  */
 
@@ -9,9 +9,9 @@ import com.mypackage.Map;
 import java.util.Arrays;
 
 /**
- * @brief Menu class that holds game state information about the program
+ * @brief GameState class that holds game state information about the program
  */
-public class Menu{
+public class GameState{
     public enum MenuOptions { ZERO, DONOTHING, FORWARD, TURNLEFT, TURNRIGHT, OPENDOOR, END}
     boolean[] unlockedOptions;
     private Map myMap;
@@ -21,11 +21,11 @@ public class Menu{
     int currentPlayerExitDistance;
 
     /**
-     * @brief Menu constructor that requires a starting map
+     * @brief GameState constructor that requires a starting map
      * @param myMap Starting map
      */
-    public Menu(Map myMap){
-        this.unlockedOptions = new boolean[Menu.MenuOptions.END.ordinal()];
+    public GameState(Map myMap){
+        this.unlockedOptions = new boolean[GameState.MenuOptions.END.ordinal()];
         Arrays.fill(unlockedOptions, true);
         this.myMap = myMap;
         this.doNothingCount = 0;
@@ -41,7 +41,7 @@ public class Menu{
         System.out.println();
         System.out.println(" " + "What would you like to do?");
 
-        for(int i = 0; i < Menu.MenuOptions.END.ordinal(); i++){
+        for(int i = 0; i < GameState.MenuOptions.END.ordinal(); i++){
             MenuOptions index = MenuOptions.values()[i];
             if(unlockedOptions[i]){
                 switch(index){
