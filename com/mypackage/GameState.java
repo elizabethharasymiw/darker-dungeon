@@ -12,13 +12,14 @@ import java.util.Arrays;
  * @brief GameState class that holds game state information about the program
  */
 public class GameState{
-    public enum MenuOptions { ZERO, DONOTHING, FORWARD, TURNLEFT, TURNRIGHT, OPENDOOR, END}
-    boolean[] unlockedOptions;
+    private enum MenuOptions { ZERO, DONOTHING, FORWARD, TURNLEFT, TURNRIGHT, OPENDOOR, END}
+    private boolean[] unlockedOptions;
     private Map myMap;
-    int doNothingCount;
-    int progress_bar_length = 25;
-    int startingPlayerExitDistance;
-    int currentPlayerExitDistance;
+    private int doNothingCount;
+    private int progress_bar_length = 25;
+    private int startingPlayerExitDistance;
+    private int currentPlayerExitDistance;
+    private MenuOptions playerAction;
 
     /**
      * @brief GameState constructor that requires a starting map
@@ -31,6 +32,7 @@ public class GameState{
         this.doNothingCount = 0;
         this.startingPlayerExitDistance = myMap.getShortestDistanceExit();
         this.currentPlayerExitDistance = myMap.getShortestDistanceExit();
+        this.playerAction = MenuOptions.ZERO;
     }
 
     /**
@@ -91,7 +93,7 @@ public class GameState{
      * @param userRawInput A raw input string from the player
      * @return A valid menu option, defaults to ZERO if the input was invalid
      */
-    public MenuOptions parseUserInput(String userRawInput){
+    public void parseUserInput(String userRawInput){
 
         // Parse out a number from user input
         int userNumber;
@@ -102,7 +104,7 @@ public class GameState{
         }
 
         // Convert users number into a menu option
-        MenuOptions playerAction = MenuOptions.ZERO;
+        playerAction = MenuOptions.ZERO;
         if(userNumber > MenuOptions.ZERO.ordinal() && userNumber < MenuOptions.END.ordinal()){
             playerAction = MenuOptions.values()[userNumber];
         }
@@ -110,16 +112,13 @@ public class GameState{
         if(unlockedOptions[playerAction.ordinal()] == false){
             playerAction = MenuOptions.ZERO;
         }
-
-        return playerAction;
     }
 
     /**
      * @brief Function to process a player action
-     * @param playerAction The action the player is trying to do
      * @return Boolean state of whether or not the player is still trapped
      */
-    public Boolean doPlayerAction(MenuOptions playerAction){
+    public Boolean doPlayerAction(){
 
         Boolean trapped = true;
 
@@ -149,9 +148,8 @@ public class GameState{
 
     /**
      * @brief Function to print the current display based on the game state
-     * @param lastPlayerAction The last action the player did
      */
-    public void printScreen(MenuOptions lastPlayerAction){
+    public void printScreen(){
 
         System.out.println();
         printASCIIkey();
@@ -165,7 +163,7 @@ public class GameState{
 
         System.out.println();
 
-        switch(lastPlayerAction){
+        switch(playerAction){
             case FORWARD:
                 if(myMap.getCurrentPlayerLocationState() == myMap.getPriorPlayerLocationState()){
                     System.out.print(" You continue walking in a ");
@@ -217,7 +215,7 @@ public class GameState{
         }
 
         // check if the player just got here
-        if(myMap.checkExit() && lastPlayerAction == MenuOptions.FORWARD){
+        if(myMap.checkExit() && playerAction == MenuOptions.FORWARD){
             System.out.println(" and find a door");
         }
         else{
@@ -225,11 +223,11 @@ public class GameState{
         }
 
         // check if the player did not move locations
-        if(myMap.checkExit() && lastPlayerAction != MenuOptions.FORWARD && lastPlayerAction != MenuOptions.OPENDOOR){
+        if(myMap.checkExit() && playerAction != MenuOptions.FORWARD && playerAction != MenuOptions.OPENDOOR){
             System.out.println(" A door is nearby");
         }
 
-        if(lastPlayerAction != MenuOptions.OPENDOOR){
+        if(playerAction != MenuOptions.OPENDOOR){
             updateMenu();
             printMenu();
         }

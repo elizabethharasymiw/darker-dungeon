@@ -22,10 +22,10 @@ public class DarkerDungeon{
 
         while(trapped){
             String userRawInput = scanner.nextLine();
-            GameState.MenuOptions playerAction = myGame.parseUserInput(userRawInput);
+            myGame.parseUserInput(userRawInput);
             myGame.clearScreen();
-            trapped = myGame.doPlayerAction(playerAction);
-            myGame.printScreen(playerAction);
+            trapped = myGame.doPlayerAction();
+            myGame.printScreen();
         }
 
         scanner.close();
