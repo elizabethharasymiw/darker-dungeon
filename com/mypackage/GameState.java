@@ -45,6 +45,9 @@ public class GameState{
         System.out.println(" You wake up to an unfamilar dark room...");
         System.out.println(" You find a dimly lit glowing key in your hand.");
         System.out.println(" You hear a mysterious voice say \"find the door\".");
+
+        updateMenu();
+        printMenu();
     }
 
     /**
@@ -226,6 +229,10 @@ public class GameState{
             System.out.println(" A door is nearby");
         }
 
+        if(lastPlayerAction != MenuOptions.OPENDOOR){
+            updateMenu();
+            printMenu();
+        }
     }
 
     /**

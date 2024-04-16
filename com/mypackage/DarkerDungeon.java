@@ -21,8 +21,6 @@ public class DarkerDungeon{
         myGame.printStartMessage();
 
         while(trapped){
-            myGame.updateMenu();
-            myGame.printMenu();
             String userRawInput = scanner.nextLine();
             GameState.MenuOptions playerAction = myGame.parseUserInput(userRawInput);
             myGame.clearScreen();
