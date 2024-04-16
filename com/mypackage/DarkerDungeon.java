@@ -18,7 +18,7 @@ public class DarkerDungeon{
         Scanner scanner = new Scanner(System.in);
         Boolean trapped = true;
 
-        myGame.printStartMessage();
+        myGame.printStartScreen();
 
         while(trapped){
             String userRawInput = scanner.nextLine();

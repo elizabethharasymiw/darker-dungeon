@@ -34,9 +34,9 @@ public class GameState{
     }
 
     /**
-     * @brief Function to print the starting Game message
+     * @brief Function to print the starting Game Screen
      */
-    public void printStartMessage(){
+    public void printStartScreen(){
         clearScreen();
         System.out.println();
         printASCIIkey();
