@@ -40,6 +40,7 @@ public class GameState{
      */
     public void printStartScreen(){
         clearScreen();
+
         System.out.println();
         printASCIIkey();
 
@@ -150,6 +151,8 @@ public class GameState{
      * @brief Function to print the current display based on the game state
      */
     public void printScreen(){
+
+        clearScreen();
 
         System.out.println();
         printASCIIkey();
