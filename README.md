@@ -5,7 +5,3 @@ A text only dungeon game. Can you escape?
 - Download Java JDK
 - Download this repository
 - Run this command from the root dir: ``` make run ```
-
-## Programming Challenge Rules
-- Written in Java
-- Text only game in the command line
