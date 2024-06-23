@@ -1,6 +1,6 @@
 # TODO list for version v4.0.2
-- [ ] Fix the screen not clearing on Windows.
-- [ ] Change ASCII art for key since some characters do not display on Windows.
+- [X] Fix the screen not clearing on Windows.
+- [X] Change ASCII art for key since some characters do not display on Windows.
 
 # Unplanned feature and TODO items
 * Add other objects or interactions for the player to find if they ignore the main escape quest.
