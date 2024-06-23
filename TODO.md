@@ -4,7 +4,7 @@
 - [X] Rename Menu class to something about game state.
 - [X] Refactor all ArrayLists to Arrays where I do not need dynamic resizing.
 - [X] Update instructions for how to compile the project jar.
-- [ ] Update How to play instructions to use new jar file.
+- [X] Update How to play instructions to use new jar file.
 
 # Unplanned feature and TODO items
 * Add other objects or interactions for the player to find if they ignore the main escape quest.
