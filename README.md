@@ -1,5 +1,5 @@
 # Darker Dungeon
-A text only dungeon crawler game. Can you escape?
+A text only dungeon crawler game
 
 ## How to play
 - Download Java JDK
