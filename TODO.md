@@ -1,14 +1,14 @@
 # TODO list for version v4.0.1
 - [X] Refactor code base to have all classes in separate files
 - [X] Add Makefile command for compiling the project to a single file for releasing.
-- [ ] Refactor getShortestDistanceExit function to BFS solution instead of hard coding it.
 - [X] Rename Menu class to something about game state.
 - [X] Refactor all ArrayLists to Arrays where I do not need dynamic resizing.
-- [ ] Update instructions for how to compile the project.
-- [ ] Add the compiled java bytecode to previous releases.
+- [X] Update instructions for how to compile the project jar.
+- [ ] Update How to play instructions to use new jar file.
 
 # Unplanned feature and TODO items
 * Add other objects or interactions for the player to find if they ignore the main escape quest.
 * Remove the need for the player to press "enter" for each option and do the options in response to a keypress instead.
 * Add a mini-quest to find a second key to open the exit door.
 * Change controls to either arrow keys or WASD.
+* Refactor getShortestDistanceExit function to BFS solution instead of hard coding it.
