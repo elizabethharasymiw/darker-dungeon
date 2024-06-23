@@ -1,5 +1,5 @@
 # Darker Dungeon
-A text only dungeon crawler game
+Command line dungeon crawler game
 
 ## How to play
 - Download Java JDK
