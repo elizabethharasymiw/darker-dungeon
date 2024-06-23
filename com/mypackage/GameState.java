@@ -253,7 +253,7 @@ public class GameState{
         int remaining = 0 + (barLength * currentPlayerExitDistance);
         int progress = progress_bar_length - (barLength * currentPlayerExitDistance);
 
-        System.out.print( " ◯─┬┐ " );
+        System.out.print( " o─┬┐ " );
 
         for(int i = 0; i < progress; i++){
             System.out.print("█");
@@ -304,9 +304,19 @@ public class GameState{
      *        [H Move cursor to the beginning
      *        [2J Clear everything from this point
      */
-    public void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+    public void clearScreen(){
+        try{
+            final String os = System.getProperty("os.name");
+            if(os.contains("Windows")){
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+            else{
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        }
+        catch(final Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
