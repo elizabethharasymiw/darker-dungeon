@@ -304,9 +304,20 @@ public class GameState{
      *        [H Move cursor to the beginning
      *        [2J Clear everything from this point
      */
-    public void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+    public void clearScreen(){
+        try{
+            final String os = System.getProperty("os.name");
+            if(os.contains("Windows")){
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+            else{
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        }
+        catch(final Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
