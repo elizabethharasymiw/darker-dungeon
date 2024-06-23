@@ -9,7 +9,6 @@ A text only dungeon crawler game. Can you escape?
 
 ## Developer Build Instructions
 - Note: Build System requires GNU make
-- Install Make
 - Normal build: ``` make ```
 - Manual Test: ``` make run ```
 - Build Release: ``` make release ```
