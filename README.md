@@ -2,7 +2,7 @@
 Command line dungeon crawler game
 
 ## How to play
-- Download Java JDK
+- Download Java JDK 21.0.1 or newer
 - Download the newest jar file from the latest release assets: https://github.com/elizabethharasymiw/darker-dungeon/releases
 - Run this command on the jar file download: ``` java -jar DarkerDungeon.jar ```
 
