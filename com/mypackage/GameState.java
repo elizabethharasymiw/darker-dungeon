@@ -253,7 +253,7 @@ public class GameState{
         int remaining = 0 + (barLength * currentPlayerExitDistance);
         int progress = progress_bar_length - (barLength * currentPlayerExitDistance);
 
-        System.out.print( " ◯─┬┐ " );
+        System.out.print( " o─┬┐ " );
 
         for(int i = 0; i < progress; i++){
             System.out.print("█");
