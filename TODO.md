@@ -1,10 +1,6 @@
-# TODO list for version v4.0.1
-- [X] Refactor code base to have all classes in separate files
-- [X] Add Makefile command for compiling the project to a single file for releasing.
-- [X] Rename Menu class to something about game state.
-- [X] Refactor all ArrayLists to Arrays where I do not need dynamic resizing.
-- [X] Update instructions for how to compile the project jar.
-- [X] Update How to play instructions to use new jar file.
+# TODO list for version v4.0.2
+- [ ] Fix the screen not clearing on Windows.
+- [ ] Change ASCII art for key since some characters do not display on Windows.
 
 # Unplanned feature and TODO items
 * Add other objects or interactions for the player to find if they ignore the main escape quest.
